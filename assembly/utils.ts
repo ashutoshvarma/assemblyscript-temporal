@@ -818,6 +818,30 @@ function balanceTime(
   };
 }
 
+
+function getPartsFromEpoch(epochNanoseconds: i64): DT {
+  const { quotient, remainder } = bigInt(epochNanoseconds).divmod(1e6);
+  let epochMilliseconds = +quotient;
+  let nanos = +remainder;
+  if (nanos < 0) {
+    nanos += 1e6;
+    epochMilliseconds -= 1;
+  }
+  const microsecond = MathFloor(nanos / 1e3) % 1e3;
+  const nanosecond = nanos % 1e3;
+
+  const item = new Date(epochMilliseconds);
+  const year = item.getUTCFullYear();
+  const month = item.getUTCMonth() + 1;
+  const day = item.getUTCDate();
+  const hour = item.getUTCHours();
+  const minute = item.getUTCMinutes();
+  const second = item.getUTCSeconds();
+  const millisecond = item.getUTCMilliseconds();
+
+  return { epochMilliseconds, year, month, day, hour, minute, second, millisecond, microsecond, nanosecond };
+},
+
 // @ts-ignore: decorator
 @inline
 export function toPaddedString(number: i32, length: i32 = 2): string {

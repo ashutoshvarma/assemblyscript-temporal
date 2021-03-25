@@ -7,4 +7,8 @@ export class ZonedDateTime {
   toInstant(): Instant {
       return new Instant(this.epochNanos);
   }
+
+  get year(): i32 {
+    
+  }
 }

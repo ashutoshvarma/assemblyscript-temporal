@@ -7,52 +7,54 @@ const tz = new TimeZone("America/Los_Angeles");
 const epochMillis: i64 = 217178610123; // Date.UTC(1976, 10, 18, 15, 23, 30, 123);
 const epochNanos: i64 = epochMillis * 1_000_000 + 456_789;
 
+let zdt: ZonedDateTime;
+
 describe("Construction and properties", () => {
   it("works", () => {
-    const zdt = new ZonedDateTime(epochNanos, tz);
+    zdt = new ZonedDateTime(epochNanos, tz);
     expect(zdt.toInstant().epochSeconds).toBe(epochMillis / 1_000);
     expect(zdt.toInstant().epochMilliseconds).toBe(epochMillis);
   });
-  
-  //   describe("ZonedDateTime for (1976, 11, 18, 15, 23, 30, 123, 456, 789)", () => {
-  //     const zdt = new ZonedDateTime(epochNanos, new Temporal.TimeZone("UTC"));
-  //     it("can be constructed", () => {
-  //       assert(zdt);
-  //       equal(typeof zdt, "object");
-  //     });
-  //     it("zdt.year is 1976", () => equal(zdt.year, 1976));
-  //     it("zdt.month is 11", () => equal(zdt.month, 11));
-  //     it('zdt.monthCode is "M11"', () => equal(zdt.monthCode, "M11"));
-  //     it("zdt.day is 18", () => equal(zdt.day, 18));
-  //     it("zdt.hour is 15", () => equal(zdt.hour, 15));
-  //     it("zdt.minute is 23", () => equal(zdt.minute, 23));
-  //     it("zdt.second is 30", () => equal(zdt.second, 30));
-  //     it("zdt.millisecond is 123", () => equal(zdt.millisecond, 123));
-  //     it("zdt.microsecond is 456", () => equal(zdt.microsecond, 456));
-  //     it("zdt.nanosecond is 789", () => equal(zdt.nanosecond, 789));
-  //     it("zdt.epochSeconds is 217178610", () =>
-  //       equal(zdt.epochSeconds, 217178610));
-  //     it("zdt.epochMilliseconds is 217178610123", () =>
-  //       equal(zdt.epochMilliseconds, 217178610123));
-  //     it("zdt.epochMicroseconds is 217178610123456n", () =>
-  //       equal(zdt.epochMicroseconds, 217178610123456n));
-  //     it("zdt.epochNanoseconds is 217178610123456789n", () =>
-  //       equal(zdt.epochNanoseconds, 217178610123456789n));
-  //     it("zdt.dayOfWeek is 4", () => equal(zdt.dayOfWeek, 4));
-  //     it("zdt.dayOfYear is 323", () => equal(zdt.dayOfYear, 323));
-  //     it("zdt.weekOfYear is 47", () => equal(zdt.weekOfYear, 47));
-  //     it("zdt.daysInWeek is 7", () => equal(zdt.daysInWeek, 7));
-  //     it("zdt.daysInMonth is 30", () => equal(zdt.daysInMonth, 30));
-  //     it("zdt.daysInYear is 366", () => equal(zdt.daysInYear, 366));
-  //     it("zdt.monthsInYear is 12", () => equal(zdt.monthsInYear, 12));
-  //     it("zdt.inLeapYear is true", () => equal(zdt.inLeapYear, true));
-  //     it("zdt.offset is +00:00", () => equal(zdt.offset, "+00:00"));
-  //     it("zdt.offsetNanoseconds is 0", () => equal(zdt.offsetNanoseconds, 0));
-  //     it("string output is 1976-11-18T15:23:30.123456789+00:00[UTC]", () =>
-  //       equal(`${zdt}`, "1976-11-18T15:23:30.123456789+00:00[UTC]"));
-  //   });
 
-  
+  describe("ZonedDateTime for (1976, 11, 18, 15, 23, 30, 123, 456, 789)", () => {
+    zdt = new ZonedDateTime(epochNanos, new TimeZone("UTC"));
+    it("can be constructed", () => {
+      assert(zdt);
+    });
+    it("zdt.year is 1976", () => {
+      expect(zdt.year).toBe(1976);
+    });
+    //     it("zdt.month is 11", () => expect(zdt.month).toBe(11));
+    //     it('zdt.monthCode is "M11"', () => expect(zdt.monthCode).toBe("M11"));
+    //     it("zdt.day is 18", () => expect(zdt.day).toBe(18));
+    //     it("zdt.hour is 15", () => expect(zdt.hour).toBe(15));
+    //     it("zdt.minute is 23", () => expect(zdt.minute).toBe(23));
+    //     it("zdt.second is 30", () => expect(zdt.second).toBe(30));
+    //     it("zdt.millisecond is 123", () => expect(zdt.millisecond).toBe(123));
+    //     it("zdt.microsecond is 456", () => expect(zdt.microsecond).toBe(456));
+    //     it("zdt.nanosecond is 789", () => expect(zdt.nanosecond).toBe(789));
+    //     it("zdt.epochSeconds is 217178610", () =>
+    //       expect(zdt.epochSeconds).toBe(217178610));
+    //     it("zdt.epochMilliseconds is 217178610123", () =>
+    //       expect(zdt.epochMilliseconds).toBe(217178610123));
+    //     it("zdt.epochMicroseconds is 217178610123456n", () =>
+    //       expect(zdt.epochMicroseconds).toBe(217178610123456n));
+    //     it("zdt.epochNanoseconds is 217178610123456789n", () =>
+    //       expect(zdt.epochNanoseconds).toBe(217178610123456789n));
+    //     it("zdt.dayOfWeek is 4", () => expect(zdt.dayOfWeek).toBe(4));
+    //     it("zdt.dayOfYear is 323", () => expect(zdt.dayOfYear).toBe(323));
+    //     it("zdt.weekOfYear is 47", () => expect(zdt.weekOfYear).toBe(47));
+    //     it("zdt.daysInWeek is 7", () => expect(zdt.daysInWeek).toBe(7));
+    //     it("zdt.daysInMonth is 30", () => expect(zdt.daysInMonth).toBe(30));
+    //     it("zdt.daysInYear is 366", () => expect(zdt.daysInYear).toBe(366));
+    //     it("zdt.monthsInYear is 12", () => expect(zdt.monthsInYear).toBe(12));
+    //     it("zdt.inLeapYear is true", () => expect(zdt.inLeapYear).toBe(true));
+    //     it("zdt.offset is +00:00", () => expect(zdt.offset).toBe("+00:00"));
+    //     it("zdt.offsetNanoseconds is 0", () => expect(zdt.offsetNanoseconds).toBe(0));
+    //     it("string output is 1976-11-18T15:23:30.123456789+00:00[UTC]", () =>
+    //       expect(`${zdt}`).toBe("1976-11-18T15:23:30.123456789+00:00[UTC]"));
+  });
+
   //   describe("ZonedDateTime with non-UTC time zone and non-ISO calendar", () => {
   //     const zdt = new ZonedDateTime(
   //       epochNanos,
@@ -61,38 +63,38 @@ describe("Construction and properties", () => {
   //     );
   //     it("can be constructed", () => {
   //       assert(zdt);
-  //       equal(typeof zdt, "object");
+  //       expect(typeof zdt).toBe("object");
   //     });
-  //     it("zdt.era is ce", () => equal(zdt.era, "ce"));
-  //     it("zdt.year is 1976", () => equal(zdt.year, 1976));
-  //     it("zdt.month is 11", () => equal(zdt.month, 11));
-  //     it('zdt.monthCode is "M11"', () => equal(zdt.monthCode, "M11"));
-  //     it("zdt.day is 18", () => equal(zdt.day, 18));
-  //     it("zdt.hour is 16", () => equal(zdt.hour, 16));
-  //     it("zdt.minute is 23", () => equal(zdt.minute, 23));
-  //     it("zdt.second is 30", () => equal(zdt.second, 30));
-  //     it("zdt.millisecond is 123", () => equal(zdt.millisecond, 123));
-  //     it("zdt.microsecond is 456", () => equal(zdt.microsecond, 456));
-  //     it("zdt.nanosecond is 789", () => equal(zdt.nanosecond, 789));
+  //     it("zdt.era is ce", () => expect(zdt.era).toBe("ce"));
+  //     it("zdt.year is 1976", () => expect(zdt.year).toBe(1976));
+  //     it("zdt.month is 11", () => expect(zdt.month).toBe(11));
+  //     it('zdt.monthCode is "M11"', () => expect(zdt.monthCode).toBe("M11"));
+  //     it("zdt.day is 18", () => expect(zdt.day).toBe(18));
+  //     it("zdt.hour is 16", () => expect(zdt.hour).toBe(16));
+  //     it("zdt.minute is 23", () => expect(zdt.minute).toBe(23));
+  //     it("zdt.second is 30", () => expect(zdt.second).toBe(30));
+  //     it("zdt.millisecond is 123", () => expect(zdt.millisecond).toBe(123));
+  //     it("zdt.microsecond is 456", () => expect(zdt.microsecond).toBe(456));
+  //     it("zdt.nanosecond is 789", () => expect(zdt.nanosecond).toBe(789));
   //     it("zdt.epochSeconds is 217178610", () =>
-  //       equal(zdt.epochSeconds, 217178610));
+  //       expect(zdt.epochSeconds).toBe(217178610));
   //     it("zdt.epochMilliseconds is 217178610123", () =>
-  //       equal(zdt.epochMilliseconds, 217178610123));
+  //       expect(zdt.epochMilliseconds).toBe(217178610123));
   //     it("zdt.epochMicroseconds is 217178610123456n", () =>
-  //       equal(zdt.epochMicroseconds, 217178610123456n));
+  //       expect(zdt.epochMicroseconds).toBe(217178610123456n));
   //     it("zdt.epochNanoseconds is 217178610123456789n", () =>
-  //       equal(zdt.epochNanoseconds, 217178610123456789n));
-  //     it("zdt.dayOfWeek is 4", () => equal(zdt.dayOfWeek, 4));
-  //     it("zdt.dayOfYear is 323", () => equal(zdt.dayOfYear, 323));
-  //     it("zdt.weekOfYear is 47", () => equal(zdt.weekOfYear, 47));
-  //     it("zdt.daysInWeek is 7", () => equal(zdt.daysInWeek, 7));
-  //     it("zdt.daysInMonth is 30", () => equal(zdt.daysInMonth, 30));
-  //     it("zdt.daysInYear is 366", () => equal(zdt.daysInYear, 366));
-  //     it("zdt.monthsInYear is 12", () => equal(zdt.monthsInYear, 12));
-  //     it("zdt.inLeapYear is true", () => equal(zdt.inLeapYear, true));
-  //     it("zdt.offset is +01:00", () => equal(zdt.offset, "+01:00"));
+  //       expect(zdt.epochNanoseconds).toBe(217178610123456789n));
+  //     it("zdt.dayOfWeek is 4", () => expect(zdt.dayOfWeek).toBe(4));
+  //     it("zdt.dayOfYear is 323", () => expect(zdt.dayOfYear).toBe(323));
+  //     it("zdt.weekOfYear is 47", () => expect(zdt.weekOfYear).toBe(47));
+  //     it("zdt.daysInWeek is 7", () => expect(zdt.daysInWeek).toBe(7));
+  //     it("zdt.daysInMonth is 30", () => expect(zdt.daysInMonth).toBe(30));
+  //     it("zdt.daysInYear is 366", () => expect(zdt.daysInYear).toBe(366));
+  //     it("zdt.monthsInYear is 12", () => expect(zdt.monthsInYear).toBe(12));
+  //     it("zdt.inLeapYear is true", () => expect(zdt.inLeapYear).toBe(true));
+  //     it("zdt.offset is +01:00", () => expect(zdt.offset).toBe("+01:00"));
   //     it("zdt.offsetNanoseconds is 3600e9", () =>
-  //       equal(zdt.offsetNanoseconds, 3600e9));
+  //       expect(zdt.offsetNanoseconds).toBe(3600e9));
   //     it("string output is 1976-11-18T16:23:30.123456789+01:00[Europe/Vienna][u-ca=gregory]", () =>
   //       equal(
   //         `${zdt}`,
@@ -102,15 +104,15 @@ describe("Construction and properties", () => {
 
   //   it("casts time zone", () => {
   //     const zdt = new ZonedDateTime(epochNanos, "Asia/Seoul");
-  //     equal(typeof zdt.timeZone, "object");
+  //     expect(typeof zdt.timeZone).toBe("object");
   //     assert(zdt.timeZone instanceof Temporal.TimeZone);
-  //     equal(zdt.timeZone.id, "Asia/Seoul");
+  //     expect(zdt.timeZone.id).toBe("Asia/Seoul");
   //   });
   //   it("defaults to ISO calendar", () => {
   //     const zdt = new ZonedDateTime(epochNanos, tz);
-  //     equal(typeof zdt.calendar, "object");
+  //     expect(typeof zdt.calendar).toBe("object");
   //     assert(zdt.calendar instanceof Temporal.Calendar);
-  //     equal(zdt.calendar.id, "iso8601");
+  //     expect(zdt.calendar.id).toBe("iso8601");
   //   });
   //   it("casts calendar", () => {
   //     const zdt = new ZonedDateTime(
@@ -118,28 +120,28 @@ describe("Construction and properties", () => {
   //       Temporal.TimeZone.from("Asia/Tokyo"),
   //       "japanese"
   //     );
-  //     equal(typeof zdt.calendar, "object");
+  //     expect(typeof zdt.calendar).toBe("object");
   //     assert(zdt.calendar instanceof Temporal.Calendar);
-  //     equal(zdt.calendar.id, "japanese");
+  //     expect(zdt.calendar.id).toBe("japanese");
   //   });
 });
 
 //    describe('string parsing', () => {
 //      it('parses with an IANA zone', () => {
 //        const zdt = ZonedDateTime.from('2020-03-08T01:00-08:00[America/Los_Angeles]');
-//        equal(zdt.toString(), '2020-03-08T01:00:00-08:00[America/Los_Angeles]');
+//        expect(zdt.toString()).toBe('2020-03-08T01:00:00-08:00[America/Los_Angeles]');
 //      });
 //      it('parses with an IANA zone but no offset', () => {
 //        const zdt = ZonedDateTime.from('2020-03-08T01:00[America/Los_Angeles]');
-//        equal(zdt.toString(), '2020-03-08T01:00:00-08:00[America/Los_Angeles]');
+//        expect(zdt.toString()).toBe('2020-03-08T01:00:00-08:00[America/Los_Angeles]');
 //      });
 //      it('parses with an IANA zone but no offset (with disambiguation)', () => {
 //        const zdt = ZonedDateTime.from('2020-03-08T02:30[America/Los_Angeles]', { disambiguation: 'earlier' });
-//        equal(zdt.toString(), '2020-03-08T01:30:00-08:00[America/Los_Angeles]');
+//        expect(zdt.toString()).toBe('2020-03-08T01:30:00-08:00[America/Los_Angeles]');
 //      });
 //      it('parses with an offset in brackets', () => {
 //        const zdt = ZonedDateTime.from('2020-03-08T01:00-08:00[-08:00]');
-//        equal(zdt.toString(), '2020-03-08T01:00:00-08:00[-08:00]');
+//        expect(zdt.toString()).toBe('2020-03-08T01:00:00-08:00[-08:00]');
 //      });
 //      it('throws if no brackets', () => {
 //        throws(() => ZonedDateTime.from('2020-03-08T01:00-08:00'), RangeError);
@@ -156,7 +158,7 @@ describe("Construction and properties", () => {
 //      });
 //      it('variant time separators', () => {
 //        ['1976-11-18t15:23-08:00[America/Los_Angeles]', '1976-11-18 15:23-08:00[America/Los_Angeles]'].forEach((input) =>
-//          equal(`${ZonedDateTime.from(input)}`, '1976-11-18T15:23:00-08:00[America/Los_Angeles]')
+//          expect(`${ZonedDateTime.from(input)}`).toBe('1976-11-18T15:23:00-08:00[America/Los_Angeles]')
 //        );
 //      });
 //      it('any number of decimal places', () => {
@@ -229,7 +231,7 @@ describe("Construction and properties", () => {
 //          '+0019761118T15:23:30.1-0800[America/Los_Angeles]',
 //          '+0019761118T152330.1-08:00[America/Los_Angeles]',
 //          '+0019761118T152330.1-0800[America/Los_Angeles]'
-//        ].forEach((input) => equal(`${ZonedDateTime.from(input)}`, '1976-11-18T15:23:30.1-08:00[America/Los_Angeles]'));
+//        ].forEach((input) => expect(`${ZonedDateTime.from(input)}`).toBe('1976-11-18T15:23:30.1-08:00[America/Los_Angeles]'));
 //      });
 //      it('optional parts', () => {
 //        equal(
@@ -240,7 +242,7 @@ describe("Construction and properties", () => {
 //          `${ZonedDateTime.from('1976-11-18T15-08:00[America/Los_Angeles]')}`,
 //          '1976-11-18T15:00:00-08:00[America/Los_Angeles]'
 //        );
-//        equal(`${ZonedDateTime.from('2020-01-01[Asia/Tokyo]')}`, '2020-01-01T00:00:00+09:00[Asia/Tokyo]');
+//        expect(`${ZonedDateTime.from('2020-01-01[Asia/Tokyo]')}`).toBe('2020-01-01T00:00:00+09:00[Asia/Tokyo]');
 //      });
 //      it('no junk at end of string', () =>
 //        throws(() => ZonedDateTime.from('1976-11-18T15:23:30.123456789-08:00[America/Los_Angeles]junk'), RangeError));
@@ -258,23 +260,23 @@ describe("Construction and properties", () => {
 //        });
 //        it("{ offset: 'prefer' } if offset matches time zone (first 1:30 when DST ends)", () => {
 //          const zdt = ZonedDateTime.from('2020-11-01T01:30-07:00[America/Los_Angeles]', { offset: 'prefer' });
-//          equal(zdt.toString(), '2020-11-01T01:30:00-07:00[America/Los_Angeles]');
+//          expect(zdt.toString()).toBe('2020-11-01T01:30:00-07:00[America/Los_Angeles]');
 //        });
 //        it("{ offset: 'prefer' } if offset matches time zone (second 1:30 when DST ends)", () => {
 //          const zdt = ZonedDateTime.from('2020-11-01T01:30-08:00[America/Los_Angeles]', { offset: 'prefer' });
-//          equal(zdt.toString(), '2020-11-01T01:30:00-08:00[America/Los_Angeles]');
+//          expect(zdt.toString()).toBe('2020-11-01T01:30:00-08:00[America/Los_Angeles]');
 //        });
 //        it("{ offset: 'prefer' } if offset does not match time zone", () => {
 //          const zdt = ZonedDateTime.from('2020-11-01T04:00-07:00[America/Los_Angeles]', { offset: 'prefer' });
-//          equal(zdt.toString(), '2020-11-01T04:00:00-08:00[America/Los_Angeles]');
+//          expect(zdt.toString()).toBe('2020-11-01T04:00:00-08:00[America/Los_Angeles]');
 //        });
 //        it("{ offset: 'ignore' } uses time zone only", () => {
 //          const zdt = ZonedDateTime.from('2020-11-01T04:00-12:00[America/Los_Angeles]', { offset: 'ignore' });
-//          equal(zdt.toString(), '2020-11-01T04:00:00-08:00[America/Los_Angeles]');
+//          expect(zdt.toString()).toBe('2020-11-01T04:00:00-08:00[America/Los_Angeles]');
 //        });
 //        it("{ offset: 'use' } uses offset only", () => {
 //          const zdt = ZonedDateTime.from('2020-11-01T04:00-07:00[America/Los_Angeles]', { offset: 'use' });
-//          equal(zdt.toString(), '2020-11-01T03:00:00-08:00[America/Los_Angeles]');
+//          expect(zdt.toString()).toBe('2020-11-01T03:00:00-08:00[America/Los_Angeles]');
 //        });
 //        it('throw when bad offset', () => {
 //          ['', 'PREFER', 'balance', 3, null].forEach((offset) => {
@@ -285,7 +287,7 @@ describe("Construction and properties", () => {
 //      describe('Disambiguation option', () => {
 //        it('plain datetime with multiple instants - Fall DST in Brazil', () => {
 //          const str = '2019-02-16T23:45[America/Sao_Paulo]';
-//          equal(`${ZonedDateTime.from(str)}`, '2019-02-16T23:45:00-02:00[America/Sao_Paulo]');
+//          expect(`${ZonedDateTime.from(str)}`).toBe('2019-02-16T23:45:00-02:00[America/Sao_Paulo]');
 //          equal(
 //            `${ZonedDateTime.from(str, { disambiguation: 'compatible' })}`,
 //            '2019-02-16T23:45:00-02:00[America/Sao_Paulo]'
@@ -302,7 +304,7 @@ describe("Construction and properties", () => {
 //        });
 //        it('plain datetime with multiple instants - Spring DST in Los Angeles', () => {
 //          const str = '2020-03-08T02:30[America/Los_Angeles]';
-//          equal(`${ZonedDateTime.from(str)}`, '2020-03-08T03:30:00-07:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(str)}`).toBe('2020-03-08T03:30:00-07:00[America/Los_Angeles]');
 //          equal(
 //            `${ZonedDateTime.from(str, { disambiguation: 'compatible' })}`,
 //            '2020-03-08T03:30:00-07:00[America/Los_Angeles]'
@@ -320,7 +322,7 @@ describe("Construction and properties", () => {
 //        it('uses disambiguation if offset is ignored', () => {
 //          const str = '2020-03-08T02:30[America/Los_Angeles]';
 //          const offset = 'ignore';
-//          equal(`${ZonedDateTime.from(str, { offset })}`, '2020-03-08T03:30:00-07:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(str, { offset })}`).toBe('2020-03-08T03:30:00-07:00[America/Los_Angeles]');
 //          equal(
 //            `${ZonedDateTime.from(str, { offset, disambiguation: 'compatible' })}`,
 //            '2020-03-08T03:30:00-07:00[America/Los_Angeles]'
@@ -338,7 +340,7 @@ describe("Construction and properties", () => {
 //        it('uses disambiguation if offset is wrong and option is prefer', () => {
 //          const str = '2020-03-08T02:30-23:59[America/Los_Angeles]';
 //          const offset = 'prefer';
-//          equal(`${ZonedDateTime.from(str, { offset })}`, '2020-03-08T03:30:00-07:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(str, { offset })}`).toBe('2020-03-08T03:30:00-07:00[America/Los_Angeles]');
 //          equal(
 //            `${ZonedDateTime.from(str, { offset, disambiguation: 'compatible' })}`,
 //            '2020-03-08T03:30:00-07:00[America/Los_Angeles]'
@@ -424,14 +426,14 @@ describe("Construction and properties", () => {
 //          offset: -1030,
 //          timeZone: Temporal.TimeZone.from('-10:30')
 //        });
-//        equal(`${zdt}`, '1976-11-18T00:00:00-10:30[-10:30]');
+//        expect(`${zdt}`).toBe('1976-11-18T00:00:00-10:30[-10:30]');
 //      });
 //      describe('Overflow option', () => {
 //        const bad = { year: 2019, month: 1, day: 32, timeZone: lagos };
 //        it('reject', () => throws(() => ZonedDateTime.from(bad, { overflow: 'reject' }), RangeError));
 //        it('constrain', () => {
-//          equal(`${ZonedDateTime.from(bad)}`, '2019-01-31T00:00:00+01:00[Africa/Lagos]');
-//          equal(`${ZonedDateTime.from(bad, { overflow: 'constrain' })}`, '2019-01-31T00:00:00+01:00[Africa/Lagos]');
+//          expect(`${ZonedDateTime.from(bad)}`).toBe('2019-01-31T00:00:00+01:00[Africa/Lagos]');
+//          expect(`${ZonedDateTime.from(bad, { overflow: 'constrain' })}`).toBe('2019-01-31T00:00:00+01:00[Africa/Lagos]');
 //        });
 //        it('throw when bad overflow', () => {
 //          ['', 'CONSTRAIN', 'balance', 3, null].forEach((overflow) => {
@@ -441,7 +443,7 @@ describe("Construction and properties", () => {
 //        const leap = { year: 2016, month: 12, day: 31, hour: 23, minute: 59, second: 60, timeZone: lagos };
 //        it('reject leap second', () => throws(() => ZonedDateTime.from(leap, { overflow: 'reject' }), RangeError));
 //        it('constrain leap second', () =>
-//          equal(`${ZonedDateTime.from(leap)}`, '2016-12-31T23:59:59+01:00[Africa/Lagos]'));
+//          expect(`${ZonedDateTime.from(leap)}`).toBe('2016-12-31T23:59:59+01:00[Africa/Lagos]'));
 //      });
 //      describe('Offset option', () => {
 //        it("{ offset: 'reject' } throws if offset does not match offset time zone", () => {
@@ -458,23 +460,23 @@ describe("Construction and properties", () => {
 //        const date = { year: 2020, month: 11, day: 1, timeZone: cali };
 //        it("{ offset: 'prefer' } if offset matches time zone (first 1:30 when DST ends)", () => {
 //          const obj = { ...date, hour: 1, minute: 30, offset: '-07:00' };
-//          equal(`${ZonedDateTime.from(obj, { offset: 'prefer' })}`, '2020-11-01T01:30:00-07:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(obj, { offset: 'prefer' })}`).toBe('2020-11-01T01:30:00-07:00[America/Los_Angeles]');
 //        });
 //        it("{ offset: 'prefer' } if offset matches time zone (second 1:30 when DST ends)", () => {
 //          const obj = { ...date, hour: 1, minute: 30, offset: '-08:00' };
-//          equal(`${ZonedDateTime.from(obj, { offset: 'prefer' })}`, '2020-11-01T01:30:00-08:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(obj, { offset: 'prefer' })}`).toBe('2020-11-01T01:30:00-08:00[America/Los_Angeles]');
 //        });
 //        it("{ offset: 'prefer' } if offset does not match time zone", () => {
 //          const obj = { ...date, hour: 4, offset: '-07:00' };
-//          equal(`${ZonedDateTime.from(obj, { offset: 'prefer' })}`, '2020-11-01T04:00:00-08:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(obj, { offset: 'prefer' })}`).toBe('2020-11-01T04:00:00-08:00[America/Los_Angeles]');
 //        });
 //        it("{ offset: 'ignore' } uses time zone only", () => {
 //          const obj = { ...date, hour: 4, offset: '-12:00' };
-//          equal(`${ZonedDateTime.from(obj, { offset: 'ignore' })}`, '2020-11-01T04:00:00-08:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(obj, { offset: 'ignore' })}`).toBe('2020-11-01T04:00:00-08:00[America/Los_Angeles]');
 //        });
 //        it("{ offset: 'use' } uses offset only", () => {
 //          const obj = { ...date, hour: 4, offset: '-07:00' };
-//          equal(`${ZonedDateTime.from(obj, { offset: 'use' })}`, '2020-11-01T03:00:00-08:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(obj, { offset: 'use' })}`).toBe('2020-11-01T03:00:00-08:00[America/Los_Angeles]');
 //        });
 //        it('throw when bad offset', () => {
 //          ['', 'PREFER', 'balance', 3, null].forEach((offset) => {
@@ -486,7 +488,7 @@ describe("Construction and properties", () => {
 //        it('plain datetime with multiple instants - Fall DST in Brazil', () => {
 //          const brazil = Temporal.TimeZone.from('America/Sao_Paulo');
 //          const obj = { year: 2019, month: 2, day: 16, hour: 23, minute: 45, timeZone: brazil };
-//          equal(`${ZonedDateTime.from(obj)}`, '2019-02-16T23:45:00-02:00[America/Sao_Paulo]');
+//          expect(`${ZonedDateTime.from(obj)}`).toBe('2019-02-16T23:45:00-02:00[America/Sao_Paulo]');
 //          equal(
 //            `${ZonedDateTime.from(obj, { disambiguation: 'compatible' })}`,
 //            '2019-02-16T23:45:00-02:00[America/Sao_Paulo]'
@@ -504,7 +506,7 @@ describe("Construction and properties", () => {
 //        it('plain datetime with multiple instants - Spring DST in Los Angeles', () => {
 //          const cali = Temporal.TimeZone.from('America/Los_Angeles');
 //          const obj = { year: 2020, month: 3, day: 8, hour: 2, minute: 30, timeZone: cali };
-//          equal(`${ZonedDateTime.from(obj)}`, '2020-03-08T03:30:00-07:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(obj)}`).toBe('2020-03-08T03:30:00-07:00[America/Los_Angeles]');
 //          equal(
 //            `${ZonedDateTime.from(obj, { disambiguation: 'compatible' })}`,
 //            '2020-03-08T03:30:00-07:00[America/Los_Angeles]'
@@ -523,7 +525,7 @@ describe("Construction and properties", () => {
 //          const cali = Temporal.TimeZone.from('America/Los_Angeles');
 //          const obj = { year: 2020, month: 3, day: 8, hour: 2, minute: 30, timeZone: cali };
 //          const offset = 'ignore';
-//          equal(`${ZonedDateTime.from(obj, { offset })}`, '2020-03-08T03:30:00-07:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(obj, { offset })}`).toBe('2020-03-08T03:30:00-07:00[America/Los_Angeles]');
 //          equal(
 //            `${ZonedDateTime.from(obj, { offset, disambiguation: 'compatible' })}`,
 //            '2020-03-08T03:30:00-07:00[America/Los_Angeles]'
@@ -542,7 +544,7 @@ describe("Construction and properties", () => {
 //          const cali = Temporal.TimeZone.from('America/Los_Angeles');
 //          const obj = { year: 2020, month: 3, day: 8, hour: 2, minute: 30, offset: '-23:59', timeZone: cali };
 //          const offset = 'prefer';
-//          equal(`${ZonedDateTime.from(obj, { offset })}`, '2020-03-08T03:30:00-07:00[America/Los_Angeles]');
+//          expect(`${ZonedDateTime.from(obj, { offset })}`).toBe('2020-03-08T03:30:00-07:00[America/Los_Angeles]');
 //          equal(
 //            `${ZonedDateTime.from(obj, { offset, disambiguation: 'compatible' })}`,
 //            '2020-03-08T03:30:00-07:00[America/Los_Angeles]'
@@ -568,48 +570,48 @@ describe("Construction and properties", () => {
 //    describe('ZonedDateTime.with()', () => {
 //      const zdt = new Temporal.PlainDateTime(1976, 11, 18, 15, 23, 30, 123, 456, 789).toZonedDateTime('UTC');
 //      it('zdt.with({ year: 2019 } works', () => {
-//        equal(`${zdt.with({ year: 2019 })}`, '2019-11-18T15:23:30.123456789+00:00[UTC]');
+//        expect(`${zdt.with({ year: 2019 })}`).toBe('2019-11-18T15:23:30.123456789+00:00[UTC]');
 //      });
 //      it('zdt.with({ month: 5 } works', () => {
-//        equal(`${zdt.with({ month: 5 })}`, '1976-05-18T15:23:30.123456789+00:00[UTC]');
+//        expect(`${zdt.with({ month: 5 })}`).toBe('1976-05-18T15:23:30.123456789+00:00[UTC]');
 //      });
 //      it('zdt.with({ monthCode: "M05" }) works', () => {
-//        equal(`${zdt.with({ monthCode: 'M05' })}`, '1976-05-18T15:23:30.123456789+00:00[UTC]');
+//        expect(`${zdt.with({ monthCode: 'M05' })}`).toBe('1976-05-18T15:23:30.123456789+00:00[UTC]');
 //      });
 //      it('month and monthCode must agree', () => {
 //        throws(() => zdt.with({ month: 5, monthCode: 'M06' }), RangeError);
 //      });
 //      it('zdt.with({ day: 5 } works', () => {
-//        equal(`${zdt.with({ day: 5 })}`, '1976-11-05T15:23:30.123456789+00:00[UTC]');
+//        expect(`${zdt.with({ day: 5 })}`).toBe('1976-11-05T15:23:30.123456789+00:00[UTC]');
 //      });
 //      it('zdt.with({ hour: 5 } works', () => {
-//        equal(`${zdt.with({ hour: 5 })}`, '1976-11-18T05:23:30.123456789+00:00[UTC]');
+//        expect(`${zdt.with({ hour: 5 })}`).toBe('1976-11-18T05:23:30.123456789+00:00[UTC]');
 //      });
 //      it('zdt.with({ minute: 5 } works', () => {
-//        equal(`${zdt.with({ minute: 5 })}`, '1976-11-18T15:05:30.123456789+00:00[UTC]');
+//        expect(`${zdt.with({ minute: 5 })}`).toBe('1976-11-18T15:05:30.123456789+00:00[UTC]');
 //      });
 //      it('zdt.with({ second: 5 } works', () => {
-//        equal(`${zdt.with({ second: 5 })}`, '1976-11-18T15:23:05.123456789+00:00[UTC]');
+//        expect(`${zdt.with({ second: 5 })}`).toBe('1976-11-18T15:23:05.123456789+00:00[UTC]');
 //      });
 //      it('zdt.with({ millisecond: 5 } works', () => {
-//        equal(`${zdt.with({ millisecond: 5 })}`, '1976-11-18T15:23:30.005456789+00:00[UTC]');
+//        expect(`${zdt.with({ millisecond: 5 })}`).toBe('1976-11-18T15:23:30.005456789+00:00[UTC]');
 //      });
 //      it('zdt.with({ microsecond: 5 } works', () => {
-//        equal(`${zdt.with({ microsecond: 5 })}`, '1976-11-18T15:23:30.123005789+00:00[UTC]');
+//        expect(`${zdt.with({ microsecond: 5 })}`).toBe('1976-11-18T15:23:30.123005789+00:00[UTC]');
 //      });
 //      it('zdt.with({ nanosecond: 5 } works', () => {
-//        equal(`${zdt.with({ nanosecond: 5 })}`, '1976-11-18T15:23:30.123456005+00:00[UTC]');
+//        expect(`${zdt.with({ nanosecond: 5 })}`).toBe('1976-11-18T15:23:30.123456005+00:00[UTC]');
 //      });
 //      it('zdt.with({ month: 5, second: 15 } works', () => {
-//        equal(`${zdt.with({ month: 5, second: 15 })}`, '1976-05-18T15:23:15.123456789+00:00[UTC]');
+//        expect(`${zdt.with({ month: 5, second: 15 })}`).toBe('1976-05-18T15:23:15.123456789+00:00[UTC]');
 //      });
 //      describe('Overflow', () => {
 //        it('constrain', () => {
 //          const overflow = 'constrain';
-//          equal(`${zdt.with({ month: 29 }, { overflow })}`, '1976-12-18T15:23:30.123456789+00:00[UTC]');
-//          equal(`${zdt.with({ day: 31 }, { overflow })}`, '1976-11-30T15:23:30.123456789+00:00[UTC]');
-//          equal(`${zdt.with({ hour: 29 }, { overflow })}`, '1976-11-18T23:23:30.123456789+00:00[UTC]');
-//          equal(`${zdt.with({ nanosecond: 9000 }, { overflow })}`, '1976-11-18T15:23:30.123456999+00:00[UTC]');
+//          expect(`${zdt.with({ month: 29 }, { overflow })}`).toBe('1976-12-18T15:23:30.123456789+00:00[UTC]');
+//          expect(`${zdt.with({ day: 31 }, { overflow })}`).toBe('1976-11-30T15:23:30.123456789+00:00[UTC]');
+//          expect(`${zdt.with({ hour: 29 }, { overflow })}`).toBe('1976-11-18T23:23:30.123456789+00:00[UTC]');
+//          expect(`${zdt.with({ nanosecond: 9000 }, { overflow })}`).toBe('1976-11-18T15:23:30.123456999+00:00[UTC]');
 //        });
 //        it('reject', () => {
 //          const overflow = 'reject';
@@ -619,7 +621,7 @@ describe("Construction and properties", () => {
 //          throws(() => zdt.with({ nanosecond: 9000 }, { overflow }), RangeError);
 //        });
 //        it('constrain is the default', () => {
-//          equal(`${zdt.with({ month: 29 })}`, `${zdt.with({ month: 29 }, { overflow: 'constrain' })}`);
+//          expect(`${zdt.with({ month: 29 })}`, `${zdt.with({ month: 29 }).toBe({ overflow: 'constrain' })}`);
 //        });
 //        it('invalid overflow', () => {
 //          ['', 'CONSTRAIN', 'balance', 3, null].forEach((overflow) =>
@@ -693,8 +695,8 @@ describe("Construction and properties", () => {
 //        const bogus = { ...twoThirty, offset: '+23:59' };
 //        it('use, with bogus offset, changes to the exact time with the offset', () => {
 //          const preserveExact = dstStartDay.with(bogus, { offset: 'use' });
-//          equal(`${preserveExact}`, '2019-03-08T23:01:01-03:30[America/St_Johns]');
-//          equal(preserveExact.epochNanoseconds, Temporal.Instant.from('2019-03-10T02:30:01+23:59').epochNanoseconds);
+//          expect(`${preserveExact}`).toBe('2019-03-08T23:01:01-03:30[America/St_Johns]');
+//          expect(preserveExact.epochNanoseconds).toBe(Temporal.Instant.from('2019-03-10T02:30:01+23:59').epochNanoseconds);
 //        });
 //        it('ignore, with bogus offset, defers to disambiguation option', () => {
 //          const offset = 'ignore';
@@ -724,36 +726,36 @@ describe("Construction and properties", () => {
 //        const doubleTime = ZonedDateTime.from('2019-11-03T01:30:01-03:30[America/St_Johns]');
 //        it('use changes to the exact time with the offset', () => {
 //          const preserveExact = doubleTime.with({ offset: '-02:30' }, { offset: 'use' });
-//          equal(preserveExact.offset, '-02:30');
-//          equal(preserveExact.epochNanoseconds, Temporal.Instant.from('2019-11-03T01:30:01-02:30').epochNanoseconds);
+//          expect(preserveExact.offset).toBe('-02:30');
+//          expect(preserveExact.epochNanoseconds).toBe(Temporal.Instant.from('2019-11-03T01:30:01-02:30').epochNanoseconds);
 //        });
 //        it('ignore defers to disambiguation option', () => {
 //          const offset = 'ignore';
-//          equal(doubleTime.with({ offset: '-02:30' }, { offset, disambiguation: 'earlier' }).offset, '-02:30');
-//          equal(doubleTime.with({ offset: '-02:30' }, { offset, disambiguation: 'later' }).offset, '-03:30');
+//          expect(doubleTime.with({ offset: '-02:30' }, { offset, disambiguation: 'earlier' }).offset).toBe('-02:30');
+//          expect(doubleTime.with({ offset: '-02:30' }, { offset, disambiguation: 'later' }).offset).toBe('-03:30');
 //        });
 //        it('prefer adjusts offset of repeated clock time', () => {
-//          equal(doubleTime.with({ offset: '-02:30' }, { offset: 'prefer' }).offset, '-02:30');
+//          expect(doubleTime.with({ offset: '-02:30' }, { offset: 'prefer' }).offset).toBe('-02:30');
 //        });
 //        it('reject adjusts offset of repeated clock time', () => {
-//          equal(doubleTime.with({ offset: '-02:30' }, { offset: 'reject' }).offset, '-02:30');
+//          expect(doubleTime.with({ offset: '-02:30' }, { offset: 'reject' }).offset).toBe('-02:30');
 //        });
 //        it('use does not cause the offset to change when adjusting repeated clock time', () => {
-//          equal(doubleTime.with({ minute: 31 }, { offset: 'use' }).offset, '-03:30');
+//          expect(doubleTime.with({ minute: 31 }, { offset: 'use' }).offset).toBe('-03:30');
 //        });
 //        it('ignore may cause the offset to change when adjusting repeated clock time', () => {
-//          equal(doubleTime.with({ minute: 31 }, { offset: 'ignore' }).offset, '-02:30');
+//          expect(doubleTime.with({ minute: 31 }, { offset: 'ignore' }).offset).toBe('-02:30');
 //        });
 //        it('prefer does not cause the offset to change when adjusting repeated clock time', () => {
-//          equal(doubleTime.with({ minute: 31 }, { offset: 'prefer' }).offset, '-03:30');
+//          expect(doubleTime.with({ minute: 31 }, { offset: 'prefer' }).offset).toBe('-03:30');
 //        });
 //        it('reject does not cause the offset to change when adjusting repeated clock time', () => {
-//          equal(doubleTime.with({ minute: 31 }, { offset: 'reject' }).offset, '-03:30');
+//          expect(doubleTime.with({ minute: 31 }, { offset: 'reject' }).offset).toBe('-03:30');
 //        });
 //        it('prefer is the default', () => {
-//          equal(`${dstStartDay.with(twoThirty)}`, `${dstStartDay.with(twoThirty, { offset: 'prefer' })}`);
-//          equal(`${dstEndDay.with(twoThirty)}`, `${dstEndDay.with(twoThirty, { offset: 'prefer' })}`);
-//          equal(`${doubleTime.with({ minute: 31 })}`, `${doubleTime.with({ minute: 31 }, { offset: 'prefer' })}`);
+//          expect(`${dstStartDay.with(twoThirty)}`, `${dstStartDay.with(twoThirty).toBe({ offset: 'prefer' })}`);
+//          expect(`${dstEndDay.with(twoThirty)}`, `${dstEndDay.with(twoThirty).toBe({ offset: 'prefer' })}`);
+//          expect(`${doubleTime.with({ minute: 31 })}`, `${doubleTime.with({ minute: 31 }).toBe({ offset: 'prefer' })}`);
 //        });
 //        it('invalid offset', () => {
 //          ['', 'PREFER', 'balance', 3, null].forEach((offset) =>
@@ -766,7 +768,7 @@ describe("Construction and properties", () => {
 //          throws(() => zdt.with({ day: 5 }, badOptions), TypeError)
 //        );
 //        [{}, () => {}, undefined].forEach((options) =>
-//          equal(`${zdt.with({ day: 5 }, options)}`, '1976-11-05T15:23:30.123456789+00:00[UTC]')
+//          expect(`${zdt.with({ day: 5 }, options)}`).toBe('1976-11-05T15:23:30.123456789+00:00[UTC]')
 //        );
 //      });
 //      it('object must contain at least one correctly-spelled property', () => {
@@ -774,7 +776,7 @@ describe("Construction and properties", () => {
 //        throws(() => zdt.with({ months: 12 }), TypeError);
 //      });
 //      it('incorrectly-spelled properties are ignored', () => {
-//        equal(`${zdt.with({ month: 12, days: 15 })}`, '1976-12-18T15:23:30.123456789+00:00[UTC]');
+//        expect(`${zdt.with({ month: 12, days: 15 })}`).toBe('1976-12-18T15:23:30.123456789+00:00[UTC]');
 //      });
 //      it('throws if timeZone is included', () => {
 //        throws(() => zdt.with({ month: 2, timeZone: 'Asia/Ulaanbaatar' }), TypeError);
@@ -803,37 +805,37 @@ describe("Construction and properties", () => {
 //    describe('.withPlainTime manipulation', () => {
 //      const zdt = Temporal.ZonedDateTime.from('2015-12-07T03:24:30.000003500[America/Los_Angeles]');
 //      it('withPlainTime({ hour: 10 }) works', () => {
-//        equal(`${zdt.withPlainTime({ hour: 10 })}`, '2015-12-07T10:00:00-08:00[America/Los_Angeles]');
+//        expect(`${zdt.withPlainTime({ hour: 10 })}`).toBe('2015-12-07T10:00:00-08:00[America/Los_Angeles]');
 //      });
 //      it('withPlainTime(time) works', () => {
 //        const time = Temporal.PlainTime.from('11:22');
-//        equal(`${zdt.withPlainTime(time)}`, '2015-12-07T11:22:00-08:00[America/Los_Angeles]');
+//        expect(`${zdt.withPlainTime(time)}`).toBe('2015-12-07T11:22:00-08:00[America/Los_Angeles]');
 //      });
 //      it("withPlainTime('12:34') works", () => {
-//        equal(`${zdt.withPlainTime('12:34')}`, '2015-12-07T12:34:00-08:00[America/Los_Angeles]');
+//        expect(`${zdt.withPlainTime('12:34')}`).toBe('2015-12-07T12:34:00-08:00[America/Los_Angeles]');
 //      });
 //      it('withPlainTime() defaults to midnight', () => {
-//        equal(`${zdt.withPlainTime()}`, '2015-12-07T00:00:00-08:00[America/Los_Angeles]');
+//        expect(`${zdt.withPlainTime()}`).toBe('2015-12-07T00:00:00-08:00[America/Los_Angeles]');
 //      });
 //      it('object must contain at least one correctly-spelled property', () => {
 //        throws(() => zdt.withPlainTime({}), TypeError);
 //        throws(() => zdt.withPlainTime({ minutes: 12 }), TypeError);
 //      });
 //      it('incorrectly-spelled properties are ignored', () => {
-//        equal(`${zdt.withPlainTime({ hour: 10, seconds: 55 })}`, '2015-12-07T10:00:00-08:00[America/Los_Angeles]');
+//        expect(`${zdt.withPlainTime({ hour: 10, seconds: 55 })}`).toBe('2015-12-07T10:00:00-08:00[America/Los_Angeles]');
 //      });
 //    });
 //    describe('.withPlainDate manipulation', () => {
 //      const zdt = Temporal.ZonedDateTime.from('1995-12-07T03:24:30[America/Los_Angeles]');
 //      it('withPlainDate({ year: 2000, month: 6, day: 1 }) works', () => {
-//        equal(`${zdt.withPlainDate({ year: 2000, month: 6, day: 1 })}`, '2000-06-01T03:24:30-07:00[America/Los_Angeles]');
+//        expect(`${zdt.withPlainDate({ year: 2000, month: 6, day: 1 })}`).toBe('2000-06-01T03:24:30-07:00[America/Los_Angeles]');
 //      });
 //      it('withPlainDate(plainDate) works', () => {
 //        const date = Temporal.PlainDate.from('2020-01-23');
-//        equal(`${zdt.withPlainDate(date)}`, '2020-01-23T03:24:30-08:00[America/Los_Angeles]');
+//        expect(`${zdt.withPlainDate(date)}`).toBe('2020-01-23T03:24:30-08:00[America/Los_Angeles]');
 //      });
 //      it("withPlainDate('2018-09-15') works", () => {
-//        equal(`${zdt.withPlainDate('2018-09-15')}`, '2018-09-15T03:24:30-07:00[America/Los_Angeles]');
+//        expect(`${zdt.withPlainDate('2018-09-15')}`).toBe('2018-09-15T03:24:30-07:00[America/Los_Angeles]');
 //      });
 //      it('result contains a non-ISO calendar if present in the input', () => {
 //        equal(
@@ -869,25 +871,25 @@ describe("Construction and properties", () => {
 //      const instant = Temporal.Instant.from('2019-11-18T15:23:30.123456789-08:00[America/Los_Angeles]');
 //      const zdt = instant.toZonedDateTimeISO('UTC');
 //      it('zonedDateTime.withTimeZone(America/Los_Angeles) works', () => {
-//        equal(`${zdt.withTimeZone(tz)}`, '2019-11-18T15:23:30.123456789-08:00[America/Los_Angeles]');
+//        expect(`${zdt.withTimeZone(tz)}`).toBe('2019-11-18T15:23:30.123456789-08:00[America/Los_Angeles]');
 //      });
 //      it('casts its argument', () => {
-//        equal(`${zdt.withTimeZone('America/Los_Angeles')}`, '2019-11-18T15:23:30.123456789-08:00[America/Los_Angeles]');
+//        expect(`${zdt.withTimeZone('America/Los_Angeles')}`).toBe('2019-11-18T15:23:30.123456789-08:00[America/Los_Angeles]');
 //      });
 //      it('keeps instant and calendar the same', () => {
 //        const zdt = ZonedDateTime.from('2019-11-18T15:23:30.123456789+01:00[Europe/Madrid][u-ca=gregory]');
 //        const zdt2 = zdt.withTimeZone('America/Vancouver');
-//        equal(zdt.epochNanoseconds, zdt2.epochNanoseconds);
-//        equal(zdt2.calendar.id, 'gregory');
-//        equal(zdt2.timeZone.id, 'America/Vancouver');
-//        notEqual(`${zdt.toPlainDateTime()}`, `${zdt2.toPlainDateTime()}`);
+//        expect(zdt.epochNanoseconds).toBe(zdt2.epochNanoseconds);
+//        expect(zdt2.calendar.id).toBe('gregory');
+//        expect(zdt2.timeZone.id).toBe('America/Vancouver');
+//        notexpect(`${zdt.toPlainDateTime()}`).toBe(`${zdt2.toPlainDateTime()}`);
 //      });
 //    });
 //    describe('ZonedDateTime.withCalendar()', () => {
 //      const zdt = ZonedDateTime.from('2019-11-18T15:23:30.123456789-08:00[America/Los_Angeles]');
 //      it('zonedDateTime.withCalendar(japanese) works', () => {
 //        const cal = Temporal.Calendar.from('japanese');
-//        equal(`${zdt.withCalendar(cal)}`, '2019-11-18T15:23:30.123456789-08:00[America/Los_Angeles][u-ca=japanese]');
+//        expect(`${zdt.withCalendar(cal)}`).toBe('2019-11-18T15:23:30.123456789-08:00[America/Los_Angeles][u-ca=japanese]');
 //      });
 //      it('casts its argument', () => {
 //        equal(
@@ -898,9 +900,9 @@ describe("Construction and properties", () => {
 //      it('keeps instant and time zone the same', () => {
 //        const zdt = ZonedDateTime.from('2019-11-18T15:23:30.123456789+01:00[Europe/Madrid][u-ca=gregory]');
 //        const zdt2 = zdt.withCalendar('japanese');
-//        equal(zdt.epochNanoseconds, zdt2.epochNanoseconds);
-//        equal(zdt2.calendar.id, 'japanese');
-//        equal(zdt2.timeZone.id, 'Europe/Madrid');
+//        expect(zdt.epochNanoseconds).toBe(zdt2.epochNanoseconds);
+//        expect(zdt2.calendar.id).toBe('japanese');
+//        expect(zdt2.timeZone.id).toBe('Europe/Madrid');
 //      });
 //    });
 
@@ -911,9 +913,9 @@ describe("Construction and properties", () => {
 //      ['hours', 'minutes', 'seconds'].forEach((largestUnit) => {
 //        const diff = later.since(earlier, { largestUnit });
 //        it(`earlier.since(later, ${largestUnit}) == later.since(earlier, ${largestUnit}).negated()`, () =>
-//          equal(`${earlier.since(later, { largestUnit })}`, `${diff.negated()}`));
+//          expect(`${earlier.since(later, { largestUnit })}`).toBe(`${diff.negated()}`));
 //        it(`earlier.until(later, ${largestUnit}) == later.since(earlier, ${largestUnit})`, () =>
-//          equal(`${earlier.until(later, { largestUnit })}`, `${diff}`));
+//          expect(`${earlier.until(later, { largestUnit })}`).toBe(`${diff}`));
 //        it(`${largestUnit} difference symmetrical with regard to negative durations`, () => {
 //          assert(earlier.subtract(diff.negated()).equals(later));
 //          assert(later.add(diff.negated()).equals(earlier));
@@ -931,12 +933,12 @@ describe("Construction and properties", () => {
 //      it('subtract result', () => {
 //        const later = ZonedDateTime.from('2019-10-29T10:46:38.271986102-03:00[America/Santiago]');
 //        const earlier = later.subtract({ hours: 12 });
-//        equal(`${earlier}`, '2019-10-28T22:46:38.271986102-03:00[America/Santiago]');
+//        expect(`${earlier}`).toBe('2019-10-28T22:46:38.271986102-03:00[America/Santiago]');
 //      });
 //      it('add result', () => {
 //        const earlier = ZonedDateTime.from('2020-05-31T23:12:38.271986102-04:00[America/Santiago]');
 //        const later = earlier.add({ hours: 2 });
-//        equal(`${later}`, '2020-06-01T01:12:38.271986102-04:00[America/Santiago]');
+//        expect(`${later}`).toBe('2020-06-01T01:12:38.271986102-04:00[America/Santiago]');
 //      });
 //      it('symmetrical with regard to negative durations', () => {
 //        equal(
@@ -957,27 +959,27 @@ describe("Construction and properties", () => {
 //        const three = two.subtract({ hours: 480, nanoseconds: 1600 });
 //        const four = one.add({ hours: 480, nanoseconds: 1600 });
 //        it(`(${zdt}).subtract({ hours: 240, nanoseconds: 800 }) = ${one}`, () =>
-//          equal(`${one}`, '1969-12-15T12:23:45.678900434+00:00[UTC]'));
+//          expect(`${one}`).toBe('1969-12-15T12:23:45.678900434+00:00[UTC]'));
 //        it(`(${zdt}).add({ hours: 240, nanoseconds: 800 }) = ${two}`, () =>
-//          equal(`${two}`, '1970-01-04T12:23:45.678902034+00:00[UTC]'));
+//          expect(`${two}`).toBe('1970-01-04T12:23:45.678902034+00:00[UTC]'));
 //        it(`(${two}).subtract({ hours: 480, nanoseconds: 1600 }) = ${one}`, () => assert(three.equals(one)));
 //        it(`(${one}).add({ hours: 480, nanoseconds: 1600 }) = ${two}`, () => assert(four.equals(two)));
 //      });
 //      it('zdt.add(durationObj)', () => {
 //        const later = zdt.add(Temporal.Duration.from('PT240H0.000000800S'));
-//        equal(`${later}`, '1970-01-04T12:23:45.678902034+00:00[UTC]');
+//        expect(`${later}`).toBe('1970-01-04T12:23:45.678902034+00:00[UTC]');
 //      });
 //      it('casts argument', () => {
-//        equal(`${zdt.add('PT240H0.000000800S')}`, '1970-01-04T12:23:45.678902034+00:00[UTC]');
+//        expect(`${zdt.add('PT240H0.000000800S')}`).toBe('1970-01-04T12:23:45.678902034+00:00[UTC]');
 //      });
 //      const jan31 = ZonedDateTime.from('2020-01-31T15:00-08:00[America/Vancouver]');
 //      it('constrain when ambiguous result', () => {
-//        equal(`${jan31.add({ months: 1 })}`, '2020-02-29T15:00:00-08:00[America/Vancouver]');
-//        equal(`${jan31.add({ months: 1 }, { overflow: 'constrain' })}`, '2020-02-29T15:00:00-08:00[America/Vancouver]');
+//        expect(`${jan31.add({ months: 1 })}`).toBe('2020-02-29T15:00:00-08:00[America/Vancouver]');
+//        expect(`${jan31.add({ months: 1 }, { overflow: 'constrain' })}`).toBe('2020-02-29T15:00:00-08:00[America/Vancouver]');
 //      });
 //      it('symmetrical with regard to negative durations in the time part', () => {
-//        equal(`${jan31.add({ minutes: -30 })}`, '2020-01-31T14:30:00-08:00[America/Vancouver]');
-//        equal(`${jan31.add({ seconds: -30 })}`, '2020-01-31T14:59:30-08:00[America/Vancouver]');
+//        expect(`${jan31.add({ minutes: -30 })}`).toBe('2020-01-31T14:30:00-08:00[America/Vancouver]');
+//        expect(`${jan31.add({ seconds: -30 })}`).toBe('2020-01-31T14:59:30-08:00[America/Vancouver]');
 //      });
 //      it('throw when ambiguous result with reject', () => {
 //        throws(() => jan31.add({ months: 1 }, { overflow: 'reject' }), RangeError);
@@ -997,7 +999,7 @@ describe("Construction and properties", () => {
 //          throws(() => zdt.add({ years: 1 }, badOptions), TypeError)
 //        );
 //        [{}, () => {}, undefined].forEach((options) =>
-//          equal(`${zdt.add({ years: 1 }, options)}`, '1970-12-25T12:23:45.678901234+00:00[UTC]')
+//          expect(`${zdt.add({ years: 1 }, options)}`).toBe('1970-12-25T12:23:45.678901234+00:00[UTC]')
 //        );
 //      });
 //      it('object must contain at least one correctly-spelled property', () => {
@@ -1005,29 +1007,29 @@ describe("Construction and properties", () => {
 //        throws(() => zdt.add({ hour: 12 }), TypeError);
 //      });
 //      it('incorrectly-spelled properties are ignored', () => {
-//        equal(`${zdt.add({ hour: 1, minutes: 1 })}`, '1969-12-25T12:24:45.678901234+00:00[UTC]');
+//        expect(`${zdt.add({ hour: 1, minutes: 1 })}`).toBe('1969-12-25T12:24:45.678901234+00:00[UTC]');
 //      });
 //    });
 //    describe('ZonedDateTime.subtract()', () => {
 //      const zdt = ZonedDateTime.from('1969-12-25T12:23:45.678901234+00:00[UTC]');
 //      it('inst.subtract(durationObj)', () => {
 //        const earlier = zdt.subtract(Temporal.Duration.from('PT240H0.000000800S'));
-//        equal(`${earlier}`, '1969-12-15T12:23:45.678900434+00:00[UTC]');
+//        expect(`${earlier}`).toBe('1969-12-15T12:23:45.678900434+00:00[UTC]');
 //      });
 //      it('casts argument', () => {
-//        equal(`${zdt.subtract('PT240H0.000000800S')}`, '1969-12-15T12:23:45.678900434+00:00[UTC]');
+//        expect(`${zdt.subtract('PT240H0.000000800S')}`).toBe('1969-12-15T12:23:45.678900434+00:00[UTC]');
 //      });
 //      const mar31 = ZonedDateTime.from('2020-03-31T15:00-07:00[America/Vancouver]');
 //      it('constrain when ambiguous result', () => {
-//        equal(`${mar31.subtract({ months: 1 })}`, '2020-02-29T15:00:00-08:00[America/Vancouver]');
+//        expect(`${mar31.subtract({ months: 1 })}`).toBe('2020-02-29T15:00:00-08:00[America/Vancouver]');
 //        equal(
 //          `${mar31.subtract({ months: 1 }, { overflow: 'constrain' })}`,
 //          '2020-02-29T15:00:00-08:00[America/Vancouver]'
 //        );
 //      });
 //      it('symmetrical with regard to negative durations in the time part', () => {
-//        equal(`${mar31.subtract({ minutes: -30 })}`, '2020-03-31T15:30:00-07:00[America/Vancouver]');
-//        equal(`${mar31.subtract({ seconds: -30 })}`, '2020-03-31T15:00:30-07:00[America/Vancouver]');
+//        expect(`${mar31.subtract({ minutes: -30 })}`).toBe('2020-03-31T15:30:00-07:00[America/Vancouver]');
+//        expect(`${mar31.subtract({ seconds: -30 })}`).toBe('2020-03-31T15:00:30-07:00[America/Vancouver]');
 //      });
 //      it('throw when ambiguous result with reject', () => {
 //        throws(() => mar31.subtract({ months: 1 }, { overflow: 'reject' }), RangeError);
@@ -1047,7 +1049,7 @@ describe("Construction and properties", () => {
 //          throws(() => zdt.subtract({ years: 1 }, badOptions), TypeError)
 //        );
 //        [{}, () => {}, undefined].forEach((options) =>
-//          equal(`${zdt.subtract({ years: 1 }, options)}`, '1968-12-25T12:23:45.678901234+00:00[UTC]')
+//          expect(`${zdt.subtract({ years: 1 }, options)}`).toBe('1968-12-25T12:23:45.678901234+00:00[UTC]')
 //        );
 //      });
 //      it('object must contain at least one correctly-spelled property', () => {
@@ -1055,7 +1057,7 @@ describe("Construction and properties", () => {
 //        throws(() => zdt.subtract({ hour: 12 }), TypeError);
 //      });
 //      it('incorrectly-spelled properties are ignored', () => {
-//        equal(`${zdt.subtract({ hour: 1, minutes: 1 })}`, '1969-12-25T12:22:45.678901234+00:00[UTC]');
+//        expect(`${zdt.subtract({ hour: 1, minutes: 1 })}`).toBe('1969-12-25T12:22:45.678901234+00:00[UTC]');
 //      });
 //    });
 
@@ -1063,21 +1065,21 @@ describe("Construction and properties", () => {
 //      const zdt = ZonedDateTime.from('1976-11-18T15:23:30.123456789+01:00[Europe/Vienna]');
 //      it('zdt.until(later) === later.since(zdt) with default options', () => {
 //        const later = ZonedDateTime.from({ year: 2016, month: 3, day: 3, hour: 18, timeZone: 'Europe/Vienna' });
-//        equal(`${zdt.until(later)}`, `${later.since(zdt)}`);
+//        expect(`${zdt.until(later)}`).toBe(`${later.since(zdt)}`);
 //      });
 //      it('casts argument', () => {
 //        equal(
 //          `${zdt.until({ year: 2019, month: 10, day: 29, hour: 10, timeZone: 'Europe/Vienna' })}`,
 //          'PT376434H36M29.876543211S'
 //        );
-//        equal(`${zdt.until('2019-10-29T10:46:38.271986102+01:00[Europe/Vienna]')}`, 'PT376435H23M8.148529313S');
+//        expect(`${zdt.until('2019-10-29T10:46:38.271986102+01:00[Europe/Vienna]')}`).toBe('PT376435H23M8.148529313S');
 //      });
 //      const feb20 = ZonedDateTime.from('2020-02-01T00:00+01:00[Europe/Vienna]');
 //      const feb21 = ZonedDateTime.from('2021-02-01T00:00+01:00[Europe/Vienna]');
 //      it('defaults to returning hours', () => {
-//        equal(`${feb20.until(feb21)}`, 'PT8784H');
-//        equal(`${feb20.until(feb21, { largestUnit: 'auto' })}`, 'PT8784H');
-//        equal(`${feb20.until(feb21, { largestUnit: 'hours' })}`, 'PT8784H');
+//        expect(`${feb20.until(feb21)}`).toBe('PT8784H');
+//        expect(`${feb20.until(feb21, { largestUnit: 'auto' })}`).toBe('PT8784H');
+//        expect(`${feb20.until(feb21, { largestUnit: 'hours' })}`).toBe('PT8784H');
 //        equal(
 //          `${feb20.until(ZonedDateTime.from('2021-02-01T00:00:00.000000001+01:00[Europe/Vienna]'))}`,
 //          'PT8784H0.000000001S'
@@ -1088,46 +1090,46 @@ describe("Construction and properties", () => {
 //        );
 //      });
 //      it('can return lower or higher units', () => {
-//        equal(`${feb20.until(feb21, { largestUnit: 'years' })}`, 'P1Y');
-//        equal(`${feb20.until(feb21, { largestUnit: 'months' })}`, 'P12M');
-//        equal(`${feb20.until(feb21, { largestUnit: 'weeks' })}`, 'P52W2D');
-//        equal(`${feb20.until(feb21, { largestUnit: 'days' })}`, 'P366D');
-//        equal(`${feb20.until(feb21, { largestUnit: 'minutes' })}`, 'PT527040M');
-//        equal(`${feb20.until(feb21, { largestUnit: 'seconds' })}`, 'PT31622400S');
+//        expect(`${feb20.until(feb21, { largestUnit: 'years' })}`).toBe('P1Y');
+//        expect(`${feb20.until(feb21, { largestUnit: 'months' })}`).toBe('P12M');
+//        expect(`${feb20.until(feb21, { largestUnit: 'weeks' })}`).toBe('P52W2D');
+//        expect(`${feb20.until(feb21, { largestUnit: 'days' })}`).toBe('P366D');
+//        expect(`${feb20.until(feb21, { largestUnit: 'minutes' })}`).toBe('PT527040M');
+//        expect(`${feb20.until(feb21, { largestUnit: 'seconds' })}`).toBe('PT31622400S');
 //      });
 //      it('can return subseconds', () => {
 //        const later = feb20.add({ days: 1, milliseconds: 250, microseconds: 250, nanoseconds: 250 });
 
 //        const msDiff = feb20.until(later, { largestUnit: 'milliseconds' });
-//        equal(msDiff.seconds, 0);
-//        equal(msDiff.milliseconds, 86400250);
-//        equal(msDiff.microseconds, 250);
-//        equal(msDiff.nanoseconds, 250);
+//        expect(msDiff.seconds).toBe(0);
+//        expect(msDiff.milliseconds).toBe(86400250);
+//        expect(msDiff.microseconds).toBe(250);
+//        expect(msDiff.nanoseconds).toBe(250);
 
 //        const µsDiff = feb20.until(later, { largestUnit: 'microseconds' });
-//        equal(µsDiff.milliseconds, 0);
-//        equal(µsDiff.microseconds, 86400250250);
-//        equal(µsDiff.nanoseconds, 250);
+//        expect(µsDiff.milliseconds).toBe(0);
+//        expect(µsDiff.microseconds).toBe(86400250250);
+//        expect(µsDiff.nanoseconds).toBe(250);
 
 //        const nsDiff = feb20.until(later, { largestUnit: 'nanoseconds' });
-//        equal(nsDiff.microseconds, 0);
-//        equal(nsDiff.nanoseconds, 86400250250250);
+//        expect(nsDiff.microseconds).toBe(0);
+//        expect(nsDiff.nanoseconds).toBe(86400250250250);
 //      });
 //      it('does not include higher units than necessary', () => {
 //        const lastFeb20 = ZonedDateTime.from('2020-02-29T00:00+01:00[Europe/Vienna]');
 //        const lastJan21 = ZonedDateTime.from('2021-01-31T00:00+01:00[Europe/Vienna]');
-//        equal(`${lastFeb20.until(lastJan21)}`, 'PT8088H');
-//        equal(`${lastFeb20.until(lastJan21, { largestUnit: 'months' })}`, 'P11M2D');
-//        equal(`${lastFeb20.until(lastJan21, { largestUnit: 'years' })}`, 'P11M2D');
+//        expect(`${lastFeb20.until(lastJan21)}`).toBe('PT8088H');
+//        expect(`${lastFeb20.until(lastJan21, { largestUnit: 'months' })}`).toBe('P11M2D');
+//        expect(`${lastFeb20.until(lastJan21, { largestUnit: 'years' })}`).toBe('P11M2D');
 //      });
 //      it('weeks and months are mutually exclusive', () => {
 //        const laterDateTime = zdt.add({ days: 42, hours: 3 });
 //        const weeksDifference = zdt.until(laterDateTime, { largestUnit: 'weeks' });
-//        notEqual(weeksDifference.weeks, 0);
-//        equal(weeksDifference.months, 0);
+//        notexpect(weeksDifference.weeks).toBe(0);
+//        expect(weeksDifference.months).toBe(0);
 //        const monthsDifference = zdt.until(laterDateTime, { largestUnit: 'months' });
-//        equal(monthsDifference.weeks, 0);
-//        notEqual(monthsDifference.months, 0);
+//        expect(monthsDifference.weeks).toBe(0);
+//        notexpect(monthsDifference.months).toBe(0);
 //      });
 //      it('no two different calendars', () => {
 //        const zdt1 = new ZonedDateTime(0n, 'UTC');
@@ -1138,7 +1140,7 @@ describe("Construction and properties", () => {
 //        [null, 1, 'hello', true, Symbol('foo'), 1n].forEach((badOptions) =>
 //          throws(() => feb20.until(feb21, badOptions), TypeError)
 //        );
-//        [{}, () => {}, undefined].forEach((options) => equal(`${feb20.until(feb21, options)}`, 'PT8784H'));
+//        [{}, () => {}, undefined].forEach((options) => expect(`${feb20.until(feb21, options)}`).toBe('PT8784H'));
 //      });
 //      const earlier = ZonedDateTime.from('2019-01-08T09:22:36.123456789+01:00[Europe/Vienna]');
 //      const later = ZonedDateTime.from('2021-09-07T14:39:40.987654321+02:00[Europe/Vienna]');
@@ -1169,10 +1171,10 @@ describe("Construction and properties", () => {
 //        }
 //      });
 //      it('assumes a different default for largestUnit if smallestUnit is larger than hours', () => {
-//        equal(`${earlier.until(later, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`, 'P3Y');
-//        equal(`${earlier.until(later, { smallestUnit: 'months', roundingMode: 'halfExpand' })}`, 'P32M');
-//        equal(`${earlier.until(later, { smallestUnit: 'weeks', roundingMode: 'halfExpand' })}`, 'P139W');
-//        equal(`${earlier.until(later, { smallestUnit: 'days', roundingMode: 'halfExpand' })}`, 'P973D');
+//        expect(`${earlier.until(later, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`).toBe('P3Y');
+//        expect(`${earlier.until(later, { smallestUnit: 'months', roundingMode: 'halfExpand' })}`).toBe('P32M');
+//        expect(`${earlier.until(later, { smallestUnit: 'weeks', roundingMode: 'halfExpand' })}`).toBe('P139W');
+//        expect(`${earlier.until(later, { smallestUnit: 'days', roundingMode: 'halfExpand' })}`).toBe('P973D');
 //      });
 //      it('throws on invalid roundingMode', () => {
 //        throws(() => earlier.until(later, { roundingMode: 'cile' }), RangeError);
@@ -1192,8 +1194,8 @@ describe("Construction and properties", () => {
 //      incrementOneNearest.forEach(([smallestUnit, expected]) => {
 //        const roundingMode = 'halfExpand';
 //        it(`rounds to nearest ${smallestUnit}`, () => {
-//          equal(`${earlier.until(later, { smallestUnit, roundingMode })}`, expected);
-//          equal(`${later.until(earlier, { smallestUnit, roundingMode })}`, `-${expected}`);
+//          expect(`${earlier.until(later, { smallestUnit, roundingMode })}`).toBe(expected);
+//          expect(`${later.until(earlier, { smallestUnit, roundingMode })}`).toBe(`-${expected}`);
 //        });
 //      });
 //      const incrementOneCeil = [
@@ -1211,8 +1213,8 @@ describe("Construction and properties", () => {
 //      incrementOneCeil.forEach(([smallestUnit, expectedPositive, expectedNegative]) => {
 //        const roundingMode = 'ceil';
 //        it(`rounds up to ${smallestUnit}`, () => {
-//          equal(`${earlier.until(later, { smallestUnit, roundingMode })}`, expectedPositive);
-//          equal(`${later.until(earlier, { smallestUnit, roundingMode })}`, expectedNegative);
+//          expect(`${earlier.until(later, { smallestUnit, roundingMode })}`).toBe(expectedPositive);
+//          expect(`${later.until(earlier, { smallestUnit, roundingMode })}`).toBe(expectedNegative);
 //        });
 //      });
 //      const incrementOneFloor = [
@@ -1230,8 +1232,8 @@ describe("Construction and properties", () => {
 //      incrementOneFloor.forEach(([smallestUnit, expectedPositive, expectedNegative]) => {
 //        const roundingMode = 'floor';
 //        it(`rounds down to ${smallestUnit}`, () => {
-//          equal(`${earlier.until(later, { smallestUnit, roundingMode })}`, expectedPositive);
-//          equal(`${later.until(earlier, { smallestUnit, roundingMode })}`, expectedNegative);
+//          expect(`${earlier.until(later, { smallestUnit, roundingMode })}`).toBe(expectedPositive);
+//          expect(`${later.until(earlier, { smallestUnit, roundingMode })}`).toBe(expectedNegative);
 //        });
 //      });
 //      const incrementOneTrunc = [
@@ -1249,13 +1251,13 @@ describe("Construction and properties", () => {
 //      incrementOneTrunc.forEach(([smallestUnit, expected]) => {
 //        const roundingMode = 'trunc';
 //        it(`truncates to ${smallestUnit}`, () => {
-//          equal(`${earlier.until(later, { smallestUnit, roundingMode })}`, expected);
-//          equal(`${later.until(earlier, { smallestUnit, roundingMode })}`, `-${expected}`);
+//          expect(`${earlier.until(later, { smallestUnit, roundingMode })}`).toBe(expected);
+//          expect(`${later.until(earlier, { smallestUnit, roundingMode })}`).toBe(`-${expected}`);
 //        });
 //      });
 //      it('trunc is the default', () => {
-//        equal(`${earlier.until(later, { smallestUnit: 'minutes' })}`, 'PT23356H17M');
-//        equal(`${earlier.until(later, { smallestUnit: 'seconds' })}`, 'PT23356H17M4S');
+//        expect(`${earlier.until(later, { smallestUnit: 'minutes' })}`).toBe('PT23356H17M');
+//        expect(`${earlier.until(later, { smallestUnit: 'seconds' })}`).toBe('PT23356H17M4S');
 //      });
 //      it('rounds to an increment of hours', () => {
 //        equal(
@@ -1332,17 +1334,17 @@ describe("Construction and properties", () => {
 //        throws(() => earlier.until(later, { smallestUnit: 'nanoseconds', roundingIncrement: 1000 }), RangeError);
 //      });
 //      it('accepts singular units', () => {
-//        equal(`${earlier.until(later, { largestUnit: 'year' })}`, `${earlier.until(later, { largestUnit: 'years' })}`);
-//        equal(`${earlier.until(later, { smallestUnit: 'year' })}`, `${earlier.until(later, { smallestUnit: 'years' })}`);
-//        equal(`${earlier.until(later, { largestUnit: 'month' })}`, `${earlier.until(later, { largestUnit: 'months' })}`);
+//        expect(`${earlier.until(later, { largestUnit: 'year' })}`, `${earlier.until(later).toBe({ largestUnit: 'years' })}`);
+//        expect(`${earlier.until(later, { smallestUnit: 'year' })}`, `${earlier.until(later).toBe({ smallestUnit: 'years' })}`);
+//        expect(`${earlier.until(later, { largestUnit: 'month' })}`, `${earlier.until(later).toBe({ largestUnit: 'months' })}`);
 //        equal(
 //          `${earlier.until(later, { smallestUnit: 'month' })}`,
 //          `${earlier.until(later, { smallestUnit: 'months' })}`
 //        );
-//        equal(`${earlier.until(later, { largestUnit: 'day' })}`, `${earlier.until(later, { largestUnit: 'days' })}`);
-//        equal(`${earlier.until(later, { smallestUnit: 'day' })}`, `${earlier.until(later, { smallestUnit: 'days' })}`);
-//        equal(`${earlier.until(later, { largestUnit: 'hour' })}`, `${earlier.until(later, { largestUnit: 'hours' })}`);
-//        equal(`${earlier.until(later, { smallestUnit: 'hour' })}`, `${earlier.until(later, { smallestUnit: 'hours' })}`);
+//        expect(`${earlier.until(later, { largestUnit: 'day' })}`, `${earlier.until(later).toBe({ largestUnit: 'days' })}`);
+//        expect(`${earlier.until(later, { smallestUnit: 'day' })}`, `${earlier.until(later).toBe({ smallestUnit: 'days' })}`);
+//        expect(`${earlier.until(later, { largestUnit: 'hour' })}`, `${earlier.until(later).toBe({ largestUnit: 'hours' })}`);
+//        expect(`${earlier.until(later, { smallestUnit: 'hour' })}`, `${earlier.until(later).toBe({ smallestUnit: 'hours' })}`);
 //        equal(
 //          `${earlier.until(later, { largestUnit: 'minute' })}`,
 //          `${earlier.until(later, { largestUnit: 'minutes' })}`
@@ -1387,29 +1389,29 @@ describe("Construction and properties", () => {
 //      it('rounds relative to the receiver', () => {
 //        const dt1 = ZonedDateTime.from('2019-01-01T00:00+00:00[UTC]');
 //        const dt2 = ZonedDateTime.from('2020-07-02T00:00+00:00[UTC]');
-//        equal(`${dt1.until(dt2, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`, 'P2Y');
-//        equal(`${dt2.until(dt1, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`, '-P1Y');
+//        expect(`${dt1.until(dt2, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`).toBe('P2Y');
+//        expect(`${dt2.until(dt1, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`).toBe('-P1Y');
 //      });
 //    });
 //    describe('ZonedDateTime.since()', () => {
 //      const zdt = ZonedDateTime.from('1976-11-18T15:23:30.123456789+01:00[Europe/Vienna]');
 //      it('zdt.since(earlier) === earlier.until(zdt) with default options', () => {
 //        const earlier = ZonedDateTime.from({ year: 1966, month: 3, day: 3, hour: 18, timeZone: 'Europe/Vienna' });
-//        equal(`${zdt.since(earlier)}`, `${earlier.until(zdt)}`);
+//        expect(`${zdt.since(earlier)}`).toBe(`${earlier.until(zdt)}`);
 //      });
 //      it('casts argument', () => {
 //        equal(
 //          `${zdt.since({ year: 2019, month: 10, day: 29, hour: 10, timeZone: 'Europe/Vienna' })}`,
 //          '-PT376434H36M29.876543211S'
 //        );
-//        equal(`${zdt.since('2019-10-29T10:46:38.271986102+01:00[Europe/Vienna]')}`, '-PT376435H23M8.148529313S');
+//        expect(`${zdt.since('2019-10-29T10:46:38.271986102+01:00[Europe/Vienna]')}`).toBe('-PT376435H23M8.148529313S');
 //      });
 //      const feb20 = ZonedDateTime.from('2020-02-01T00:00+01:00[Europe/Vienna]');
 //      const feb21 = ZonedDateTime.from('2021-02-01T00:00+01:00[Europe/Vienna]');
 //      it('defaults to returning hours', () => {
-//        equal(`${feb21.since(feb20)}`, 'PT8784H');
-//        equal(`${feb21.since(feb20, { largestUnit: 'auto' })}`, 'PT8784H');
-//        equal(`${feb21.since(feb20, { largestUnit: 'hours' })}`, 'PT8784H');
+//        expect(`${feb21.since(feb20)}`).toBe('PT8784H');
+//        expect(`${feb21.since(feb20, { largestUnit: 'auto' })}`).toBe('PT8784H');
+//        expect(`${feb21.since(feb20, { largestUnit: 'hours' })}`).toBe('PT8784H');
 //        equal(
 //          `${ZonedDateTime.from('2021-02-01T00:00:00.000000001+01:00[Europe/Vienna]').since(feb20)}`,
 //          'PT8784H0.000000001S'
@@ -1420,46 +1422,46 @@ describe("Construction and properties", () => {
 //        );
 //      });
 //      it('can return lower or higher units', () => {
-//        equal(`${feb21.since(feb20, { largestUnit: 'years' })}`, 'P1Y');
-//        equal(`${feb21.since(feb20, { largestUnit: 'months' })}`, 'P12M');
-//        equal(`${feb21.since(feb20, { largestUnit: 'weeks' })}`, 'P52W2D');
-//        equal(`${feb21.since(feb20, { largestUnit: 'days' })}`, 'P366D');
-//        equal(`${feb21.since(feb20, { largestUnit: 'minutes' })}`, 'PT527040M');
-//        equal(`${feb21.since(feb20, { largestUnit: 'seconds' })}`, 'PT31622400S');
+//        expect(`${feb21.since(feb20, { largestUnit: 'years' })}`).toBe('P1Y');
+//        expect(`${feb21.since(feb20, { largestUnit: 'months' })}`).toBe('P12M');
+//        expect(`${feb21.since(feb20, { largestUnit: 'weeks' })}`).toBe('P52W2D');
+//        expect(`${feb21.since(feb20, { largestUnit: 'days' })}`).toBe('P366D');
+//        expect(`${feb21.since(feb20, { largestUnit: 'minutes' })}`).toBe('PT527040M');
+//        expect(`${feb21.since(feb20, { largestUnit: 'seconds' })}`).toBe('PT31622400S');
 //      });
 //      it('can return subseconds', () => {
 //        const later = feb20.add({ days: 1, milliseconds: 250, microseconds: 250, nanoseconds: 250 });
 
 //        const msDiff = later.since(feb20, { largestUnit: 'milliseconds' });
-//        equal(msDiff.seconds, 0);
-//        equal(msDiff.milliseconds, 86400250);
-//        equal(msDiff.microseconds, 250);
-//        equal(msDiff.nanoseconds, 250);
+//        expect(msDiff.seconds).toBe(0);
+//        expect(msDiff.milliseconds).toBe(86400250);
+//        expect(msDiff.microseconds).toBe(250);
+//        expect(msDiff.nanoseconds).toBe(250);
 
 //        const µsDiff = later.since(feb20, { largestUnit: 'microseconds' });
-//        equal(µsDiff.milliseconds, 0);
-//        equal(µsDiff.microseconds, 86400250250);
-//        equal(µsDiff.nanoseconds, 250);
+//        expect(µsDiff.milliseconds).toBe(0);
+//        expect(µsDiff.microseconds).toBe(86400250250);
+//        expect(µsDiff.nanoseconds).toBe(250);
 
 //        const nsDiff = later.since(feb20, { largestUnit: 'nanoseconds' });
-//        equal(nsDiff.microseconds, 0);
-//        equal(nsDiff.nanoseconds, 86400250250250);
+//        expect(nsDiff.microseconds).toBe(0);
+//        expect(nsDiff.nanoseconds).toBe(86400250250250);
 //      });
 //      it('does not include higher units than necessary', () => {
 //        const lastFeb20 = ZonedDateTime.from('2020-02-29T00:00+01:00[Europe/Vienna]');
 //        const lastFeb21 = ZonedDateTime.from('2021-02-28T00:00+01:00[Europe/Vienna]');
-//        equal(`${lastFeb21.since(lastFeb20)}`, 'PT8760H');
-//        equal(`${lastFeb21.since(lastFeb20, { largestUnit: 'months' })}`, 'P11M28D');
-//        equal(`${lastFeb21.since(lastFeb20, { largestUnit: 'years' })}`, 'P11M28D');
+//        expect(`${lastFeb21.since(lastFeb20)}`).toBe('PT8760H');
+//        expect(`${lastFeb21.since(lastFeb20, { largestUnit: 'months' })}`).toBe('P11M28D');
+//        expect(`${lastFeb21.since(lastFeb20, { largestUnit: 'years' })}`).toBe('P11M28D');
 //      });
 //      it('weeks and months are mutually exclusive', () => {
 //        const laterDateTime = zdt.add({ days: 42, hours: 3 });
 //        const weeksDifference = laterDateTime.since(zdt, { largestUnit: 'weeks' });
-//        notEqual(weeksDifference.weeks, 0);
-//        equal(weeksDifference.months, 0);
+//        notexpect(weeksDifference.weeks).toBe(0);
+//        expect(weeksDifference.months).toBe(0);
 //        const monthsDifference = laterDateTime.since(zdt, { largestUnit: 'months' });
-//        equal(monthsDifference.weeks, 0);
-//        notEqual(monthsDifference.months, 0);
+//        expect(monthsDifference.weeks).toBe(0);
+//        notexpect(monthsDifference.months).toBe(0);
 //      });
 //      it('no two different calendars', () => {
 //        const zdt1 = new ZonedDateTime(0n, 'UTC');
@@ -1470,7 +1472,7 @@ describe("Construction and properties", () => {
 //        [null, 1, 'hello', true, Symbol('foo'), 1n].forEach((badOptions) =>
 //          throws(() => feb21.since(feb20, badOptions), TypeError)
 //        );
-//        [{}, () => {}, undefined].forEach((options) => equal(`${feb21.since(feb20, options)}`, 'PT8784H'));
+//        [{}, () => {}, undefined].forEach((options) => expect(`${feb21.since(feb20, options)}`).toBe('PT8784H'));
 //      });
 //      const earlier = ZonedDateTime.from('2019-01-08T09:22:36.123456789+01:00[Europe/Vienna]');
 //      const later = ZonedDateTime.from('2021-09-07T14:39:40.987654321+02:00[Europe/Vienna]');
@@ -1501,9 +1503,9 @@ describe("Construction and properties", () => {
 //        }
 //      });
 //      it('assumes a different default for largestUnit if smallestUnit is larger than days', () => {
-//        equal(`${later.since(earlier, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`, 'P3Y');
-//        equal(`${later.since(earlier, { smallestUnit: 'months', roundingMode: 'halfExpand' })}`, 'P32M');
-//        equal(`${later.since(earlier, { smallestUnit: 'weeks', roundingMode: 'halfExpand' })}`, 'P139W');
+//        expect(`${later.since(earlier, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`).toBe('P3Y');
+//        expect(`${later.since(earlier, { smallestUnit: 'months', roundingMode: 'halfExpand' })}`).toBe('P32M');
+//        expect(`${later.since(earlier, { smallestUnit: 'weeks', roundingMode: 'halfExpand' })}`).toBe('P139W');
 //      });
 //      it('throws on invalid roundingMode', () => {
 //        throws(() => later.since(earlier, { roundingMode: 'cile' }), RangeError);
@@ -1523,8 +1525,8 @@ describe("Construction and properties", () => {
 //      incrementOneNearest.forEach(([smallestUnit, expected]) => {
 //        const roundingMode = 'halfExpand';
 //        it(`rounds to nearest ${smallestUnit}`, () => {
-//          equal(`${later.since(earlier, { smallestUnit, roundingMode })}`, expected);
-//          equal(`${earlier.since(later, { smallestUnit, roundingMode })}`, `-${expected}`);
+//          expect(`${later.since(earlier, { smallestUnit, roundingMode })}`).toBe(expected);
+//          expect(`${earlier.since(later, { smallestUnit, roundingMode })}`).toBe(`-${expected}`);
 //        });
 //      });
 //      const incrementOneCeil = [
@@ -1542,8 +1544,8 @@ describe("Construction and properties", () => {
 //      incrementOneCeil.forEach(([smallestUnit, expectedPositive, expectedNegative]) => {
 //        const roundingMode = 'ceil';
 //        it(`rounds up to ${smallestUnit}`, () => {
-//          equal(`${later.since(earlier, { smallestUnit, roundingMode })}`, expectedPositive);
-//          equal(`${earlier.since(later, { smallestUnit, roundingMode })}`, expectedNegative);
+//          expect(`${later.since(earlier, { smallestUnit, roundingMode })}`).toBe(expectedPositive);
+//          expect(`${earlier.since(later, { smallestUnit, roundingMode })}`).toBe(expectedNegative);
 //        });
 //      });
 //      const incrementOneFloor = [
@@ -1561,8 +1563,8 @@ describe("Construction and properties", () => {
 //      incrementOneFloor.forEach(([smallestUnit, expectedPositive, expectedNegative]) => {
 //        const roundingMode = 'floor';
 //        it(`rounds down to ${smallestUnit}`, () => {
-//          equal(`${later.since(earlier, { smallestUnit, roundingMode })}`, expectedPositive);
-//          equal(`${earlier.since(later, { smallestUnit, roundingMode })}`, expectedNegative);
+//          expect(`${later.since(earlier, { smallestUnit, roundingMode })}`).toBe(expectedPositive);
+//          expect(`${earlier.since(later, { smallestUnit, roundingMode })}`).toBe(expectedNegative);
 //        });
 //      });
 //      const incrementOneTrunc = [
@@ -1580,13 +1582,13 @@ describe("Construction and properties", () => {
 //      incrementOneTrunc.forEach(([smallestUnit, expected]) => {
 //        const roundingMode = 'trunc';
 //        it(`truncates to ${smallestUnit}`, () => {
-//          equal(`${later.since(earlier, { smallestUnit, roundingMode })}`, expected);
-//          equal(`${earlier.since(later, { smallestUnit, roundingMode })}`, `-${expected}`);
+//          expect(`${later.since(earlier, { smallestUnit, roundingMode })}`).toBe(expected);
+//          expect(`${earlier.since(later, { smallestUnit, roundingMode })}`).toBe(`-${expected}`);
 //        });
 //      });
 //      it('trunc is the default', () => {
-//        equal(`${later.since(earlier, { smallestUnit: 'minutes' })}`, 'PT23356H17M');
-//        equal(`${later.since(earlier, { smallestUnit: 'seconds' })}`, 'PT23356H17M4S');
+//        expect(`${later.since(earlier, { smallestUnit: 'minutes' })}`).toBe('PT23356H17M');
+//        expect(`${later.since(earlier, { smallestUnit: 'seconds' })}`).toBe('PT23356H17M4S');
 //      });
 //      it('rounds to an increment of hours', () => {
 //        equal(
@@ -1663,17 +1665,17 @@ describe("Construction and properties", () => {
 //        throws(() => later.since(earlier, { smallestUnit: 'nanoseconds', roundingIncrement: 1000 }), RangeError);
 //      });
 //      it('accepts singular units', () => {
-//        equal(`${later.since(earlier, { largestUnit: 'year' })}`, `${later.since(earlier, { largestUnit: 'years' })}`);
-//        equal(`${later.since(earlier, { smallestUnit: 'year' })}`, `${later.since(earlier, { smallestUnit: 'years' })}`);
-//        equal(`${later.since(earlier, { largestUnit: 'month' })}`, `${later.since(earlier, { largestUnit: 'months' })}`);
+//        expect(`${later.since(earlier, { largestUnit: 'year' })}`, `${later.since(earlier).toBe({ largestUnit: 'years' })}`);
+//        expect(`${later.since(earlier, { smallestUnit: 'year' })}`, `${later.since(earlier).toBe({ smallestUnit: 'years' })}`);
+//        expect(`${later.since(earlier, { largestUnit: 'month' })}`, `${later.since(earlier).toBe({ largestUnit: 'months' })}`);
 //        equal(
 //          `${later.since(earlier, { smallestUnit: 'month' })}`,
 //          `${later.since(earlier, { smallestUnit: 'months' })}`
 //        );
-//        equal(`${later.since(earlier, { largestUnit: 'day' })}`, `${later.since(earlier, { largestUnit: 'days' })}`);
-//        equal(`${later.since(earlier, { smallestUnit: 'day' })}`, `${later.since(earlier, { smallestUnit: 'days' })}`);
-//        equal(`${later.since(earlier, { largestUnit: 'hour' })}`, `${later.since(earlier, { largestUnit: 'hours' })}`);
-//        equal(`${later.since(earlier, { smallestUnit: 'hour' })}`, `${later.since(earlier, { smallestUnit: 'hours' })}`);
+//        expect(`${later.since(earlier, { largestUnit: 'day' })}`, `${later.since(earlier).toBe({ largestUnit: 'days' })}`);
+//        expect(`${later.since(earlier, { smallestUnit: 'day' })}`, `${later.since(earlier).toBe({ smallestUnit: 'days' })}`);
+//        expect(`${later.since(earlier, { largestUnit: 'hour' })}`, `${later.since(earlier).toBe({ largestUnit: 'hours' })}`);
+//        expect(`${later.since(earlier, { smallestUnit: 'hour' })}`, `${later.since(earlier).toBe({ smallestUnit: 'hours' })}`);
 //        equal(
 //          `${later.since(earlier, { largestUnit: 'minute' })}`,
 //          `${later.since(earlier, { largestUnit: 'minutes' })}`
@@ -1718,8 +1720,8 @@ describe("Construction and properties", () => {
 //      it('rounds relative to the receiver', () => {
 //        const dt1 = ZonedDateTime.from('2019-01-01T00:00+00:00[UTC]');
 //        const dt2 = ZonedDateTime.from('2020-07-02T00:00+00:00[UTC]');
-//        equal(`${dt2.since(dt1, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`, 'P1Y');
-//        equal(`${dt1.since(dt2, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`, '-P2Y');
+//        expect(`${dt2.since(dt1, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`).toBe('P1Y');
+//        expect(`${dt1.since(dt2, { smallestUnit: 'years', roundingMode: 'halfExpand' })}`).toBe('-P2Y');
 //      });
 //    });
 
@@ -1751,7 +1753,7 @@ describe("Construction and properties", () => {
 //      ];
 //      incrementOneNearest.forEach(([smallestUnit, expected]) => {
 //        it(`rounds to nearest ${smallestUnit}`, () =>
-//          equal(`${zdt.round({ smallestUnit, roundingMode: 'halfExpand' })}`, expected));
+//          expect(`${zdt.round({ smallestUnit, roundingMode: 'halfExpand' })}`).toBe(expected));
 //      });
 //      const incrementOneCeil = [
 //        ['day', '1976-11-19T00:00:00+01:00[Europe/Vienna]'],
@@ -1763,7 +1765,7 @@ describe("Construction and properties", () => {
 //        ['nanosecond', '1976-11-18T15:23:30.123456789+01:00[Europe/Vienna]']
 //      ];
 //      incrementOneCeil.forEach(([smallestUnit, expected]) => {
-//        it(`rounds up to ${smallestUnit}`, () => equal(`${zdt.round({ smallestUnit, roundingMode: 'ceil' })}`, expected));
+//        it(`rounds up to ${smallestUnit}`, () => expect(`${zdt.round({ smallestUnit, roundingMode: 'ceil' })}`).toBe(expected));
 //      });
 //      const incrementOneFloor = [
 //        ['day', '1976-11-18T00:00:00+01:00[Europe/Vienna]'],
@@ -1776,32 +1778,32 @@ describe("Construction and properties", () => {
 //      ];
 //      incrementOneFloor.forEach(([smallestUnit, expected]) => {
 //        it(`rounds down to ${smallestUnit}`, () =>
-//          equal(`${zdt.round({ smallestUnit, roundingMode: 'floor' })}`, expected));
+//          expect(`${zdt.round({ smallestUnit, roundingMode: 'floor' })}`).toBe(expected));
 //        it(`truncates to ${smallestUnit}`, () =>
-//          equal(`${zdt.round({ smallestUnit, roundingMode: 'trunc' })}`, expected));
+//          expect(`${zdt.round({ smallestUnit, roundingMode: 'trunc' })}`).toBe(expected));
 //      });
 //      it('halfExpand is the default', () => {
-//        equal(`${zdt.round({ smallestUnit: 'minute' })}`, '1976-11-18T15:24:00+01:00[Europe/Vienna]');
-//        equal(`${zdt.round({ smallestUnit: 'second' })}`, '1976-11-18T15:23:30+01:00[Europe/Vienna]');
+//        expect(`${zdt.round({ smallestUnit: 'minute' })}`).toBe('1976-11-18T15:24:00+01:00[Europe/Vienna]');
+//        expect(`${zdt.round({ smallestUnit: 'second' })}`).toBe('1976-11-18T15:23:30+01:00[Europe/Vienna]');
 //      });
 //      it('rounding down is towards the Big Bang, not towards the epoch', () => {
 //        const zdt2 = ZonedDateTime.from('1969-12-15T12:00:00.5+00:00[UTC]');
 //        const smallestUnit = 'second';
-//        equal(`${zdt2.round({ smallestUnit, roundingMode: 'ceil' })}`, '1969-12-15T12:00:01+00:00[UTC]');
-//        equal(`${zdt2.round({ smallestUnit, roundingMode: 'floor' })}`, '1969-12-15T12:00:00+00:00[UTC]');
-//        equal(`${zdt2.round({ smallestUnit, roundingMode: 'trunc' })}`, '1969-12-15T12:00:00+00:00[UTC]');
-//        equal(`${zdt2.round({ smallestUnit, roundingMode: 'halfExpand' })}`, '1969-12-15T12:00:01+00:00[UTC]');
+//        expect(`${zdt2.round({ smallestUnit, roundingMode: 'ceil' })}`).toBe('1969-12-15T12:00:01+00:00[UTC]');
+//        expect(`${zdt2.round({ smallestUnit, roundingMode: 'floor' })}`).toBe('1969-12-15T12:00:00+00:00[UTC]');
+//        expect(`${zdt2.round({ smallestUnit, roundingMode: 'trunc' })}`).toBe('1969-12-15T12:00:00+00:00[UTC]');
+//        expect(`${zdt2.round({ smallestUnit, roundingMode: 'halfExpand' })}`).toBe('1969-12-15T12:00:01+00:00[UTC]');
 //      });
 //      it('rounding down is towards the Big Bang, not towards 1 BCE', () => {
 //        const zdt3 = ZonedDateTime.from('-000099-12-15T12:00:00.5+00:00[UTC]');
 //        const smallestUnit = 'second';
-//        equal(`${zdt3.round({ smallestUnit, roundingMode: 'ceil' })}`, '-000099-12-15T12:00:01+00:00[UTC]');
-//        equal(`${zdt3.round({ smallestUnit, roundingMode: 'floor' })}`, '-000099-12-15T12:00:00+00:00[UTC]');
-//        equal(`${zdt3.round({ smallestUnit, roundingMode: 'trunc' })}`, '-000099-12-15T12:00:00+00:00[UTC]');
-//        equal(`${zdt3.round({ smallestUnit, roundingMode: 'halfExpand' })}`, '-000099-12-15T12:00:01+00:00[UTC]');
+//        expect(`${zdt3.round({ smallestUnit, roundingMode: 'ceil' })}`).toBe('-000099-12-15T12:00:01+00:00[UTC]');
+//        expect(`${zdt3.round({ smallestUnit, roundingMode: 'floor' })}`).toBe('-000099-12-15T12:00:00+00:00[UTC]');
+//        expect(`${zdt3.round({ smallestUnit, roundingMode: 'trunc' })}`).toBe('-000099-12-15T12:00:00+00:00[UTC]');
+//        expect(`${zdt3.round({ smallestUnit, roundingMode: 'halfExpand' })}`).toBe('-000099-12-15T12:00:01+00:00[UTC]');
 //      });
 //      it('rounds to an increment of hours', () => {
-//        equal(`${zdt.round({ smallestUnit: 'hour', roundingIncrement: 4 })}`, '1976-11-18T16:00:00+01:00[Europe/Vienna]');
+//        expect(`${zdt.round({ smallestUnit: 'hour', roundingIncrement: 4 })}`).toBe('1976-11-18T16:00:00+01:00[Europe/Vienna]');
 //      });
 //      it('rounds to an increment of minutes', () => {
 //        equal(
@@ -1834,7 +1836,7 @@ describe("Construction and properties", () => {
 //        );
 //      });
 //      it('1 day is a valid increment', () => {
-//        equal(`${zdt.round({ smallestUnit: 'day', roundingIncrement: 1 })}`, '1976-11-19T00:00:00+01:00[Europe/Vienna]');
+//        expect(`${zdt.round({ smallestUnit: 'day', roundingIncrement: 1 })}`).toBe('1976-11-19T00:00:00+01:00[Europe/Vienna]');
 //      });
 //      it('valid hour increments divide into 24', () => {
 //        const smallestUnit = 'hour';
@@ -1876,7 +1878,7 @@ describe("Construction and properties", () => {
 //      const bal = ZonedDateTime.from('1976-11-18T23:59:59.999999999+01:00[Europe/Vienna]');
 //      ['day', 'hour', 'minute', 'second', 'millisecond', 'microsecond'].forEach((smallestUnit) => {
 //        it(`balances to next ${smallestUnit}`, () => {
-//          equal(`${bal.round({ smallestUnit })}`, '1976-11-19T00:00:00+01:00[Europe/Vienna]');
+//          expect(`${bal.round({ smallestUnit })}`).toBe('1976-11-19T00:00:00+01:00[Europe/Vienna]');
 //        });
 //      });
 //      it('accepts plural units', () => {
@@ -1890,22 +1892,22 @@ describe("Construction and properties", () => {
 //      it('rounds correctly to a 25-hour day', () => {
 //        const options = { smallestUnit: 'day' };
 //        const roundMeDown = ZonedDateTime.from('2020-11-01T12:29:59-08:00[America/Vancouver]');
-//        equal(`${roundMeDown.round(options)}`, '2020-11-01T00:00:00-07:00[America/Vancouver]');
+//        expect(`${roundMeDown.round(options)}`).toBe('2020-11-01T00:00:00-07:00[America/Vancouver]');
 //        const roundMeUp = ZonedDateTime.from('2020-11-01T12:30:01-08:00[America/Vancouver]');
-//        equal(`${roundMeUp.round(options)}`, '2020-11-02T00:00:00-08:00[America/Vancouver]');
+//        expect(`${roundMeUp.round(options)}`).toBe('2020-11-02T00:00:00-08:00[America/Vancouver]');
 //      });
 //      it('rounds correctly to a 23-hour day', () => {
 //        const options = { smallestUnit: 'day' };
 //        const roundMeDown = ZonedDateTime.from('2020-03-08T11:29:59-07:00[America/Vancouver]');
-//        equal(`${roundMeDown.round(options)}`, '2020-03-08T00:00:00-08:00[America/Vancouver]');
+//        expect(`${roundMeDown.round(options)}`).toBe('2020-03-08T00:00:00-08:00[America/Vancouver]');
 //        const roundMeUp = ZonedDateTime.from('2020-03-08T11:30:01-07:00[America/Vancouver]');
-//        equal(`${roundMeUp.round(options)}`, '2020-03-09T00:00:00-07:00[America/Vancouver]');
+//        expect(`${roundMeUp.round(options)}`).toBe('2020-03-09T00:00:00-07:00[America/Vancouver]');
 //      });
 //      it('rounding up to a nonexistent wall-clock time', () => {
 //        const almostSkipped = ZonedDateTime.from('2018-11-03T23:59:59.999999999-03:00[America/Sao_Paulo]');
 //        const rounded = almostSkipped.round({ smallestUnit: 'microsecond', roundingMode: 'halfExpand' });
-//        equal(`${rounded}`, '2018-11-04T01:00:00-02:00[America/Sao_Paulo]');
-//        equal(rounded.epochNanoseconds - almostSkipped.epochNanoseconds, 1n);
+//        expect(`${rounded}`).toBe('2018-11-04T01:00:00-02:00[America/Sao_Paulo]');
+//        expect(rounded.epochNanoseconds - almostSkipped.epochNanoseconds).toBe(1n);
 //      });
 //    });
 
@@ -1960,19 +1962,19 @@ describe("Construction and properties", () => {
 //      const zdt2 = ZonedDateTime.from('1976-11-18T15:23:30+01:00[Europe/Vienna]');
 //      const zdt3 = ZonedDateTime.from('1976-11-18T15:23:30.1234+01:00[Europe/Vienna]');
 //      it('default is to emit seconds and drop trailing zeros after the decimal', () => {
-//        equal(zdt1.toString(), '1976-11-18T15:23:00+01:00[Europe/Vienna]');
-//        equal(zdt2.toString(), '1976-11-18T15:23:30+01:00[Europe/Vienna]');
-//        equal(zdt3.toString(), '1976-11-18T15:23:30.1234+01:00[Europe/Vienna]');
+//        expect(zdt1.toString()).toBe('1976-11-18T15:23:00+01:00[Europe/Vienna]');
+//        expect(zdt2.toString()).toBe('1976-11-18T15:23:30+01:00[Europe/Vienna]');
+//        expect(zdt3.toString()).toBe('1976-11-18T15:23:30.1234+01:00[Europe/Vienna]');
 //      });
 //      it('shows only non-ISO calendar if calendarName = auto', () => {
-//        equal(zdt1.toString({ calendarName: 'auto' }), '1976-11-18T15:23:00+01:00[Europe/Vienna]');
+//        expect(zdt1.toString({ calendarName: 'auto' })).toBe('1976-11-18T15:23:00+01:00[Europe/Vienna]');
 //        equal(
 //          zdt1.withCalendar('gregory').toString({ calendarName: 'auto' }),
 //          '1976-11-18T15:23:00+01:00[Europe/Vienna][u-ca=gregory]'
 //        );
 //      });
 //      it('shows ISO calendar if calendarName = always', () => {
-//        equal(zdt1.toString({ calendarName: 'always' }), '1976-11-18T15:23:00+01:00[Europe/Vienna][u-ca=iso8601]');
+//        expect(zdt1.toString({ calendarName: 'always' })).toBe('1976-11-18T15:23:00+01:00[Europe/Vienna][u-ca=iso8601]');
 //      });
 //      it('omits non-ISO calendar if calendarName = never', () => {
 //        equal(
@@ -1981,8 +1983,8 @@ describe("Construction and properties", () => {
 //        );
 //      });
 //      it('default is calendar = auto', () => {
-//        equal(zdt1.toString(), '1976-11-18T15:23:00+01:00[Europe/Vienna]');
-//        equal(zdt1.withCalendar('gregory').toString(), '1976-11-18T15:23:00+01:00[Europe/Vienna][u-ca=gregory]');
+//        expect(zdt1.toString()).toBe('1976-11-18T15:23:00+01:00[Europe/Vienna]');
+//        expect(zdt1.withCalendar('gregory').toString()).toBe('1976-11-18T15:23:00+01:00[Europe/Vienna][u-ca=gregory]');
 //      });
 //      it('throws on invalid calendar', () => {
 //        ['ALWAYS', 'sometimes', false, 3, null].forEach((calendarName) => {
@@ -1990,34 +1992,34 @@ describe("Construction and properties", () => {
 //        });
 //      });
 //      it('shows time zone if timeZoneName = auto', () => {
-//        equal(zdt1.toString({ timeZoneName: 'auto' }), '1976-11-18T15:23:00+01:00[Europe/Vienna]');
+//        expect(zdt1.toString({ timeZoneName: 'auto' })).toBe('1976-11-18T15:23:00+01:00[Europe/Vienna]');
 //      });
 //      it('omits time zone if timeZoneName = never', () => {
-//        equal(zdt1.toString({ timeZoneName: 'never' }), '1976-11-18T15:23:00+01:00');
+//        expect(zdt1.toString({ timeZoneName: 'never' })).toBe('1976-11-18T15:23:00+01:00');
 //      });
 //      it('shows offset if offset = auto', () => {
-//        equal(zdt1.toString({ offset: 'auto' }), '1976-11-18T15:23:00+01:00[Europe/Vienna]');
+//        expect(zdt1.toString({ offset: 'auto' })).toBe('1976-11-18T15:23:00+01:00[Europe/Vienna]');
 //      });
 //      it('omits offset if offset = never', () => {
-//        equal(zdt1.toString({ offset: 'never' }), '1976-11-18T15:23:00[Europe/Vienna]');
+//        expect(zdt1.toString({ offset: 'never' })).toBe('1976-11-18T15:23:00[Europe/Vienna]');
 //      });
 //      it('combinations of calendar, time zone, and offset', () => {
 //        const zdt = zdt1.withCalendar('gregory');
-//        equal(zdt.toString({ timeZoneName: 'never', calendarName: 'never' }), '1976-11-18T15:23:00+01:00');
-//        equal(zdt.toString({ offset: 'never', calendarName: 'never' }), '1976-11-18T15:23:00[Europe/Vienna]');
-//        equal(zdt.toString({ offset: 'never', timeZoneName: 'never' }), '1976-11-18T15:23:00[u-ca=gregory]');
-//        equal(zdt.toString({ offset: 'never', timeZoneName: 'never', calendarName: 'never' }), '1976-11-18T15:23:00');
+//        expect(zdt.toString({ timeZoneName: 'never', calendarName: 'never' })).toBe('1976-11-18T15:23:00+01:00');
+//        expect(zdt.toString({ offset: 'never', calendarName: 'never' })).toBe('1976-11-18T15:23:00[Europe/Vienna]');
+//        expect(zdt.toString({ offset: 'never', timeZoneName: 'never' })).toBe('1976-11-18T15:23:00[u-ca=gregory]');
+//        expect(zdt.toString({ offset: 'never', timeZoneName: 'never', calendarName: 'never' })).toBe('1976-11-18T15:23:00');
 //      });
 //      it('truncates to minute', () => {
 //        [zdt1, zdt2, zdt3].forEach((zdt) =>
-//          equal(zdt.toString({ smallestUnit: 'minute' }), '1976-11-18T15:23+01:00[Europe/Vienna]')
+//          expect(zdt.toString({ smallestUnit: 'minute' })).toBe('1976-11-18T15:23+01:00[Europe/Vienna]')
 //        );
 //      });
 //      it('other smallestUnits are aliases for fractional digits', () => {
-//        equal(zdt3.toString({ smallestUnit: 'second' }), zdt3.toString({ fractionalSecondDigits: 0 }));
-//        equal(zdt3.toString({ smallestUnit: 'millisecond' }), zdt3.toString({ fractionalSecondDigits: 3 }));
-//        equal(zdt3.toString({ smallestUnit: 'microsecond' }), zdt3.toString({ fractionalSecondDigits: 6 }));
-//        equal(zdt3.toString({ smallestUnit: 'nanosecond' }), zdt3.toString({ fractionalSecondDigits: 9 }));
+//        expect(zdt3.toString({ smallestUnit: 'second' })).toBe(zdt3.toString({ fractionalSecondDigits: 0 }));
+//        expect(zdt3.toString({ smallestUnit: 'millisecond' })).toBe(zdt3.toString({ fractionalSecondDigits: 3 }));
+//        expect(zdt3.toString({ smallestUnit: 'microsecond' })).toBe(zdt3.toString({ fractionalSecondDigits: 6 }));
+//        expect(zdt3.toString({ smallestUnit: 'nanosecond' })).toBe(zdt3.toString({ fractionalSecondDigits: 9 }));
 //      });
 //      it('throws on invalid or disallowed smallestUnit', () => {
 //        ['era', 'year', 'month', 'day', 'hour', 'nonsense'].forEach((smallestUnit) =>
@@ -2025,26 +2027,26 @@ describe("Construction and properties", () => {
 //        );
 //      });
 //      it('accepts plural units', () => {
-//        equal(zdt3.toString({ smallestUnit: 'minutes' }), zdt3.toString({ smallestUnit: 'minute' }));
-//        equal(zdt3.toString({ smallestUnit: 'seconds' }), zdt3.toString({ smallestUnit: 'second' }));
-//        equal(zdt3.toString({ smallestUnit: 'milliseconds' }), zdt3.toString({ smallestUnit: 'millisecond' }));
-//        equal(zdt3.toString({ smallestUnit: 'microseconds' }), zdt3.toString({ smallestUnit: 'microsecond' }));
-//        equal(zdt3.toString({ smallestUnit: 'nanoseconds' }), zdt3.toString({ smallestUnit: 'nanosecond' }));
+//        expect(zdt3.toString({ smallestUnit: 'minutes' })).toBe(zdt3.toString({ smallestUnit: 'minute' }));
+//        expect(zdt3.toString({ smallestUnit: 'seconds' })).toBe(zdt3.toString({ smallestUnit: 'second' }));
+//        expect(zdt3.toString({ smallestUnit: 'milliseconds' })).toBe(zdt3.toString({ smallestUnit: 'millisecond' }));
+//        expect(zdt3.toString({ smallestUnit: 'microseconds' })).toBe(zdt3.toString({ smallestUnit: 'microsecond' }));
+//        expect(zdt3.toString({ smallestUnit: 'nanoseconds' })).toBe(zdt3.toString({ smallestUnit: 'nanosecond' }));
 //      });
 //      it('truncates or pads to 2 places', () => {
 //        const options = { fractionalSecondDigits: 2 };
-//        equal(zdt1.toString(options), '1976-11-18T15:23:00.00+01:00[Europe/Vienna]');
-//        equal(zdt2.toString(options), '1976-11-18T15:23:30.00+01:00[Europe/Vienna]');
-//        equal(zdt3.toString(options), '1976-11-18T15:23:30.12+01:00[Europe/Vienna]');
+//        expect(zdt1.toString(options)).toBe('1976-11-18T15:23:00.00+01:00[Europe/Vienna]');
+//        expect(zdt2.toString(options)).toBe('1976-11-18T15:23:30.00+01:00[Europe/Vienna]');
+//        expect(zdt3.toString(options)).toBe('1976-11-18T15:23:30.12+01:00[Europe/Vienna]');
 //      });
 //      it('pads to 7 places', () => {
 //        const options = { fractionalSecondDigits: 7 };
-//        equal(zdt1.toString(options), '1976-11-18T15:23:00.0000000+01:00[Europe/Vienna]');
-//        equal(zdt2.toString(options), '1976-11-18T15:23:30.0000000+01:00[Europe/Vienna]');
-//        equal(zdt3.toString(options), '1976-11-18T15:23:30.1234000+01:00[Europe/Vienna]');
+//        expect(zdt1.toString(options)).toBe('1976-11-18T15:23:00.0000000+01:00[Europe/Vienna]');
+//        expect(zdt2.toString(options)).toBe('1976-11-18T15:23:30.0000000+01:00[Europe/Vienna]');
+//        expect(zdt3.toString(options)).toBe('1976-11-18T15:23:30.1234000+01:00[Europe/Vienna]');
 //      });
 //      it('auto is the default', () => {
-//        [zdt1, zdt2, zdt3].forEach((zdt) => equal(zdt.toString({ fractionalSecondDigits: 'auto' }), zdt.toString()));
+//        [zdt1, zdt2, zdt3].forEach((zdt) => expect(zdt.toString({ fractionalSecondDigits: 'auto' })).toBe(zdt.toString()));
 //      });
 //      it('throws on out of range or invalid fractionalSecondDigits', () => {
 //        [-1, 10, Infinity, NaN, 'not-auto'].forEach((fractionalSecondDigits) =>
@@ -2052,7 +2054,7 @@ describe("Construction and properties", () => {
 //        );
 //      });
 //      it('accepts and truncates fractional fractionalSecondDigits', () => {
-//        equal(zdt3.toString({ fractionalSecondDigits: 5.5 }), '1976-11-18T15:23:30.12340+01:00[Europe/Vienna]');
+//        expect(zdt3.toString({ fractionalSecondDigits: 5.5 })).toBe('1976-11-18T15:23:30.12340+01:00[Europe/Vienna]');
 //      });
 //      it('smallestUnit overrides fractionalSecondDigits', () => {
 //        equal(
@@ -2074,7 +2076,7 @@ describe("Construction and properties", () => {
 //        );
 //      });
 //      it('rounds up', () => {
-//        equal(zdt2.toString({ smallestUnit: 'minute', roundingMode: 'ceil' }), '1976-11-18T15:24+01:00[Europe/Vienna]');
+//        expect(zdt2.toString({ smallestUnit: 'minute', roundingMode: 'ceil' })).toBe('1976-11-18T15:24+01:00[Europe/Vienna]');
 //        equal(
 //          zdt3.toString({ fractionalSecondDigits: 3, roundingMode: 'ceil' }),
 //          '1976-11-18T15:23:30.124+01:00[Europe/Vienna]'
@@ -2082,7 +2084,7 @@ describe("Construction and properties", () => {
 //      });
 //      it('rounds down', () => {
 //        ['floor', 'trunc'].forEach((roundingMode) => {
-//          equal(zdt2.toString({ smallestUnit: 'minute', roundingMode }), '1976-11-18T15:23+01:00[Europe/Vienna]');
+//          expect(zdt2.toString({ smallestUnit: 'minute', roundingMode })).toBe('1976-11-18T15:23+01:00[Europe/Vienna]');
 //          equal(
 //            zdt3.toString({ fractionalSecondDigits: 3, roundingMode }),
 //            '1976-11-18T15:23:30.123+01:00[Europe/Vienna]'
@@ -2091,7 +2093,7 @@ describe("Construction and properties", () => {
 //      });
 //      it('rounding down is towards the Big Bang, not towards 1 BCE', () => {
 //        const zdt4 = ZonedDateTime.from('-000099-12-15T12:00:00.5+00:00[UTC]');
-//        equal(zdt4.toString({ smallestUnit: 'second', roundingMode: 'floor' }), '-000099-12-15T12:00:00+00:00[UTC]');
+//        expect(zdt4.toString({ smallestUnit: 'second', roundingMode: 'floor' })).toBe('-000099-12-15T12:00:00+00:00[UTC]');
 //      });
 //      it('rounding can affect all units', () => {
 //        const zdt5 = ZonedDateTime.from('1999-12-31T23:59:59.999999999+01:00[Europe/Berlin]');
@@ -2103,16 +2105,16 @@ describe("Construction and properties", () => {
 //      it('rounding up to a nonexistent wall-clock time', () => {
 //        const zdt5 = ZonedDateTime.from('2018-11-03T23:59:59.999999999-03:00[America/Sao_Paulo]');
 //        const roundedString = zdt5.toString({ fractionalSecondDigits: 8, roundingMode: 'halfExpand' });
-//        equal(roundedString, '2018-11-04T01:00:00.00000000-02:00[America/Sao_Paulo]');
+//        expect(roundedString).toBe('2018-11-04T01:00:00.00000000-02:00[America/Sao_Paulo]');
 //        const zdt6 = ZonedDateTime.from(roundedString);
-//        equal(zdt6.epochNanoseconds - zdt5.epochNanoseconds, 1n);
+//        expect(zdt6.epochNanoseconds - zdt5.epochNanoseconds).toBe(1n);
 //      });
 //      it('options may only be an object or undefined', () => {
 //        [null, 1, 'hello', true, Symbol('foo'), 1n].forEach((badOptions) =>
 //          throws(() => zdt1.toString(badOptions), TypeError)
 //        );
 //        [{}, () => {}, undefined].forEach((options) =>
-//          equal(zdt1.toString(options), '1976-11-18T15:23:00+01:00[Europe/Vienna]')
+//          expect(zdt1.toString(options)).toBe('1976-11-18T15:23:00+01:00[Europe/Vienna]')
 //        );
 //      });
 //    });
@@ -2121,17 +2123,17 @@ describe("Construction and properties", () => {
 //        const zdt1 = ZonedDateTime.from('1976-11-18T15:23+01:00[Europe/Vienna]');
 //        const zdt2 = ZonedDateTime.from('1976-11-18T15:23:30+01:00[Europe/Vienna]');
 //        const zdt3 = ZonedDateTime.from('1976-11-18T15:23:30.1234+01:00[Europe/Vienna]');
-//        equal(zdt1.toJSON(), '1976-11-18T15:23:00+01:00[Europe/Vienna]');
-//        equal(zdt2.toJSON(), '1976-11-18T15:23:30+01:00[Europe/Vienna]');
-//        equal(zdt3.toJSON(), '1976-11-18T15:23:30.1234+01:00[Europe/Vienna]');
+//        expect(zdt1.toJSON()).toBe('1976-11-18T15:23:00+01:00[Europe/Vienna]');
+//        expect(zdt2.toJSON()).toBe('1976-11-18T15:23:30+01:00[Europe/Vienna]');
+//        expect(zdt3.toJSON()).toBe('1976-11-18T15:23:30.1234+01:00[Europe/Vienna]');
 //      });
 //    });
 //    describe("Comparison operators don't work", () => {
 //      const zdt1 = ZonedDateTime.from('1963-02-13T09:36:29.123456789+01:00[Europe/Vienna]');
 //      const zdt1again = ZonedDateTime.from('1963-02-13T09:36:29.123456789+01:00[Europe/Vienna]');
 //      const zdt2 = ZonedDateTime.from('1976-11-18T15:23:30.123456789+01:00[Europe/Vienna]');
-//      it('=== is object equality', () => equal(zdt1, zdt1));
-//      it('!== is object equality', () => notEqual(zdt1, zdt1again));
+//      it('=== is object equality', () => expect(zdt1).toBe(zdt1));
+//      it('!== is object equality', () => notexpect(zdt1).toBe(zdt1again));
 //      it('<', () => throws(() => zdt1 < zdt2));
 //      it('>', () => throws(() => zdt1 > zdt2));
 //      it('<=', () => throws(() => zdt1 <= zdt2));
@@ -2141,66 +2143,66 @@ describe("Construction and properties", () => {
 //    describe('ZonedDateTime.toInstant()', () => {
 //      it('recent date', () => {
 //        const zdt = ZonedDateTime.from('2019-10-29T10:46:38.271986102+01:00[Europe/Amsterdam]');
-//        equal(`${zdt.toInstant()}`, '2019-10-29T09:46:38.271986102Z');
+//        expect(`${zdt.toInstant()}`).toBe('2019-10-29T09:46:38.271986102Z');
 //      });
 //      it('year ≤ 99', () => {
 //        const zdt = ZonedDateTime.from('+000098-10-29T10:46:38.271986102+00:00[UTC]');
-//        equal(`${zdt.toInstant()}`, '+000098-10-29T10:46:38.271986102Z');
+//        expect(`${zdt.toInstant()}`).toBe('+000098-10-29T10:46:38.271986102Z');
 //      });
 //      it('year < 1', () => {
 //        let zdt = ZonedDateTime.from('+000000-10-29T10:46:38.271986102+00:00[UTC]');
-//        equal(`${zdt.toInstant()}`, '+000000-10-29T10:46:38.271986102Z');
+//        expect(`${zdt.toInstant()}`).toBe('+000000-10-29T10:46:38.271986102Z');
 //        zdt = ZonedDateTime.from('-001000-10-29T10:46:38.271986102+00:00[UTC]');
-//        equal(`${zdt.toInstant()}`, '-001000-10-29T10:46:38.271986102Z');
+//        expect(`${zdt.toInstant()}`).toBe('-001000-10-29T10:46:38.271986102Z');
 //      });
 //      it('year 0 leap day', () => {
 //        const zdt = ZonedDateTime.from('+000000-02-29T00:00-00:01:15[Europe/London]');
-//        equal(`${zdt.toInstant()}`, '+000000-02-29T00:01:15Z');
+//        expect(`${zdt.toInstant()}`).toBe('+000000-02-29T00:01:15Z');
 //      });
 //    });
 //    describe('ZonedDateTime.toPlainDate()', () => {
 //      it('works', () => {
 //        const zdt = Temporal.Instant.from('2019-10-29T09:46:38.271986102Z').toZonedDateTimeISO(tz);
-//        equal(`${zdt.toPlainDate()}`, '2019-10-29');
+//        expect(`${zdt.toPlainDate()}`).toBe('2019-10-29');
 //      });
 //      it('preserves the calendar', () => {
 //        const zdt = Temporal.Instant.from('2019-10-29T09:46:38.271986102Z').toZonedDateTime({
 //          timeZone: tz,
 //          calendar: 'gregory'
 //        });
-//        equal(zdt.toPlainDate().calendar.id, 'gregory');
+//        expect(zdt.toPlainDate().calendar.id).toBe('gregory');
 //      });
 //    });
 //    describe('ZonedDateTime.toPlainTime()', () => {
 //      it('works', () => {
 //        const zdt = Temporal.Instant.from('2019-10-29T09:46:38.271986102Z').toZonedDateTimeISO(tz);
-//        equal(`${zdt.toPlainTime()}`, '02:46:38.271986102');
+//        expect(`${zdt.toPlainTime()}`).toBe('02:46:38.271986102');
 //      });
 //    });
 //    describe('ZonedDateTime.toPlainYearMonth()', () => {
 //      it('works', () => {
 //        const zdt = Temporal.Instant.from('2019-10-29T09:46:38.271986102Z').toZonedDateTimeISO(tz);
-//        equal(`${zdt.toPlainYearMonth()}`, '2019-10');
+//        expect(`${zdt.toPlainYearMonth()}`).toBe('2019-10');
 //      });
 //      it('preserves the calendar', () => {
 //        const zdt = Temporal.Instant.from('2019-10-29T09:46:38.271986102Z').toZonedDateTime({
 //          timeZone: tz,
 //          calendar: 'gregory'
 //        });
-//        equal(zdt.toPlainYearMonth().calendar.id, 'gregory');
+//        expect(zdt.toPlainYearMonth().calendar.id).toBe('gregory');
 //      });
 //    });
 //    describe('ZonedDateTime.toPlainMonthDay()', () => {
 //      it('works', () => {
 //        const zdt = Temporal.Instant.from('2019-10-29T09:46:38.271986102Z').toZonedDateTimeISO(tz);
-//        equal(`${zdt.toPlainMonthDay()}`, '10-29');
+//        expect(`${zdt.toPlainMonthDay()}`).toBe('10-29');
 //      });
 //      it('preserves the calendar', () => {
 //        const zdt = Temporal.Instant.from('2019-10-29T09:46:38.271986102Z').toZonedDateTime({
 //          timeZone: tz,
 //          calendar: 'gregory'
 //        });
-//        equal(zdt.toPlainMonthDay().calendar.id, 'gregory');
+//        expect(zdt.toPlainMonthDay().calendar.id).toBe('gregory');
 //      });
 //    });
 
@@ -2208,33 +2210,33 @@ describe("Construction and properties", () => {
 //      const zdt1 = ZonedDateTime.from('1976-11-18T15:23:30.123456789+08:00[Asia/Shanghai]');
 //      const fields = zdt1.getISOFields();
 //      it('fields', () => {
-//        equal(fields.isoYear, 1976);
-//        equal(fields.isoMonth, 11);
-//        equal(fields.isoDay, 18);
-//        equal(fields.isoHour, 15);
-//        equal(fields.isoMinute, 23);
-//        equal(fields.isoSecond, 30);
-//        equal(fields.isoMillisecond, 123);
-//        equal(fields.isoMicrosecond, 456);
-//        equal(fields.isoNanosecond, 789);
-//        equal(fields.offset, '+08:00');
-//        equal(fields.timeZone.id, 'Asia/Shanghai');
-//        equal(fields.calendar.id, 'iso8601');
+//        expect(fields.isoYear).toBe(1976);
+//        expect(fields.isoMonth).toBe(11);
+//        expect(fields.isoDay).toBe(18);
+//        expect(fields.isoHour).toBe(15);
+//        expect(fields.isoMinute).toBe(23);
+//        expect(fields.isoSecond).toBe(30);
+//        expect(fields.isoMillisecond).toBe(123);
+//        expect(fields.isoMicrosecond).toBe(456);
+//        expect(fields.isoNanosecond).toBe(789);
+//        expect(fields.offset).toBe('+08:00');
+//        expect(fields.timeZone.id).toBe('Asia/Shanghai');
+//        expect(fields.calendar.id).toBe('iso8601');
 //      });
 //      it('enumerable', () => {
 //        const fields2 = { ...fields };
-//        equal(fields2.isoYear, 1976);
-//        equal(fields2.isoMonth, 11);
-//        equal(fields2.isoDay, 18);
-//        equal(fields2.isoHour, 15);
-//        equal(fields2.isoMinute, 23);
-//        equal(fields2.isoSecond, 30);
-//        equal(fields2.isoMillisecond, 123);
-//        equal(fields2.isoMicrosecond, 456);
-//        equal(fields2.isoNanosecond, 789);
-//        equal(fields2.offset, '+08:00');
-//        equal(fields2.timeZone, fields.timeZone);
-//        equal(fields2.calendar, fields.calendar);
+//        expect(fields2.isoYear).toBe(1976);
+//        expect(fields2.isoMonth).toBe(11);
+//        expect(fields2.isoDay).toBe(18);
+//        expect(fields2.isoHour).toBe(15);
+//        expect(fields2.isoMinute).toBe(23);
+//        expect(fields2.isoSecond).toBe(30);
+//        expect(fields2.isoMillisecond).toBe(123);
+//        expect(fields2.isoMicrosecond).toBe(456);
+//        expect(fields2.isoNanosecond).toBe(789);
+//        expect(fields2.offset).toBe('+08:00');
+//        expect(fields2.timeZone).toBe(fields.timeZone);
+//        expect(fields2.calendar).toBe(fields.calendar);
 //      });
 //    });
 
@@ -2242,20 +2244,20 @@ describe("Construction and properties", () => {
 //    const dayBeforeDstStart = new Temporal.PlainDateTime(2020, 3, 7, 2, 30).toZonedDateTime(tz);
 //    describe('properties around DST', () => {
 //      it('hoursInDay works with DST start', () => {
-//        equal(hourBeforeDstStart.hoursInDay, 23);
+//        expect(hourBeforeDstStart.hoursInDay).toBe(23);
 //      });
 //      it('hoursInDay works with non-DST days', () => {
-//        equal(dayBeforeDstStart.hoursInDay, 24);
+//        expect(dayBeforeDstStart.hoursInDay).toBe(24);
 //      });
 //      it('hoursInDay works with DST end', () => {
 //        const dstEnd = ZonedDateTime.from('2020-11-01T01:00-08:00[America/Los_Angeles]');
-//        equal(dstEnd.hoursInDay, 25);
+//        expect(dstEnd.hoursInDay).toBe(25);
 //      });
 //      it('hoursInDay works with non-hour DST change', () => {
 //        const zdt1 = ZonedDateTime.from('2020-10-04T12:00[Australia/Lord_Howe]');
-//        equal(zdt1.hoursInDay, 23.5);
+//        expect(zdt1.hoursInDay).toBe(23.5);
 //        const zdt2 = ZonedDateTime.from('2020-04-05T12:00[Australia/Lord_Howe]');
-//        equal(zdt2.hoursInDay, 24.5);
+//        expect(zdt2.hoursInDay).toBe(24.5);
 //      });
 //      it('hoursInDay works with non-half-hour DST change', () => {
 //        const zdt = ZonedDateTime.from('1933-01-01T12:00[Asia/Singapore]');
@@ -2263,62 +2265,62 @@ describe("Construction and properties", () => {
 //      });
 //      it('hoursInDay works when day starts at 1:00 due to DST start at midnight', () => {
 //        const zdt = ZonedDateTime.from('2015-10-18T12:00:00-02:00[America/Sao_Paulo]');
-//        equal(zdt.hoursInDay, 23);
+//        expect(zdt.hoursInDay).toBe(23);
 //      });
 //      it('startOfDay works', () => {
 //        const start = dayBeforeDstStart.startOfDay();
-//        equal(`${start.toPlainDate()}`, `${dayBeforeDstStart.toPlainDate()}`);
-//        equal(`${start.toPlainTime()}`, '00:00:00');
+//        expect(`${start.toPlainDate()}`).toBe(`${dayBeforeDstStart.toPlainDate()}`);
+//        expect(`${start.toPlainTime()}`).toBe('00:00:00');
 //      });
 //      it('startOfDay works when day starts at 1:00 due to DST start at midnight', () => {
 //        const zdt = ZonedDateTime.from('2015-10-18T12:00:00-02:00[America/Sao_Paulo]');
-//        equal(`${zdt.startOfDay().toPlainTime()}`, '01:00:00');
+//        expect(`${zdt.startOfDay().toPlainTime()}`).toBe('01:00:00');
 //      });
 
 //      const dayAfterSamoaDateLineChange = ZonedDateTime.from('2011-12-31T22:00+14:00[Pacific/Apia]');
 //      const dayBeforeSamoaDateLineChange = ZonedDateTime.from('2011-12-29T22:00-10:00[Pacific/Apia]');
 //      it('startOfDay works after Samoa date line change', () => {
 //        const start = dayAfterSamoaDateLineChange.startOfDay();
-//        equal(`${start.toPlainTime()}`, '00:00:00');
+//        expect(`${start.toPlainTime()}`).toBe('00:00:00');
 //      });
 //      it('hoursInDay works after Samoa date line change', () => {
-//        equal(dayAfterSamoaDateLineChange.hoursInDay, 24);
+//        expect(dayAfterSamoaDateLineChange.hoursInDay).toBe(24);
 //      });
 //      it('hoursInDay works before Samoa date line change', () => {
-//        equal(dayBeforeSamoaDateLineChange.hoursInDay, 24);
+//        expect(dayBeforeSamoaDateLineChange.hoursInDay).toBe(24);
 //      });
 //    });
 
 //    describe('math around DST', () => {
 //      it('add 1 hour to get to DST start', () => {
 //        const added = hourBeforeDstStart.add({ hours: 1 });
-//        equal(added.hour, 3);
+//        expect(added.hour).toBe(3);
 //        const diff = hourBeforeDstStart.until(added, { largestUnit: 'hours' });
-//        equal(`${diff}`, 'PT1H');
-//        equal(`${diff}`, `${added.since(hourBeforeDstStart, { largestUnit: 'hours' })}`);
+//        expect(`${diff}`).toBe('PT1H');
+//        expect(`${diff}`, `${added.since(hourBeforeDstStart).toBe({ largestUnit: 'hours' })}`);
 //        const undo = added.subtract(diff);
-//        equal(`${undo}`, `${hourBeforeDstStart}`);
+//        expect(`${undo}`).toBe(`${hourBeforeDstStart}`);
 //      });
 
 //      it('add 2 hours to get to DST start +1', () => {
 //        const added = hourBeforeDstStart.add({ hours: 2 });
-//        equal(added.hour, 4);
+//        expect(added.hour).toBe(4);
 //        const diff = hourBeforeDstStart.until(added, { largestUnit: 'hours' });
-//        equal(`${diff}`, 'PT2H');
-//        equal(`${diff}`, `${added.since(hourBeforeDstStart, { largestUnit: 'hours' })}`);
+//        expect(`${diff}`).toBe('PT2H');
+//        expect(`${diff}`, `${added.since(hourBeforeDstStart).toBe({ largestUnit: 'hours' })}`);
 //        const undo = added.subtract(diff);
-//        equal(`${undo}`, `${hourBeforeDstStart}`);
+//        expect(`${undo}`).toBe(`${hourBeforeDstStart}`);
 //      });
 
 //      it('add 1.5 hours to get to 0.5 hours after DST start', () => {
 //        const added = hourBeforeDstStart.add({ hours: 1, minutes: 30 });
-//        equal(added.hour, 3);
-//        equal(added.minute, 30);
+//        expect(added.hour).toBe(3);
+//        expect(added.minute).toBe(30);
 //        const diff = hourBeforeDstStart.until(added, { largestUnit: 'hours' });
-//        equal(`${diff}`, 'PT1H30M');
-//        equal(`${diff}`, `${added.since(hourBeforeDstStart, { largestUnit: 'hours' })}`);
+//        expect(`${diff}`).toBe('PT1H30M');
+//        expect(`${diff}`, `${added.since(hourBeforeDstStart).toBe({ largestUnit: 'hours' })}`);
 //        const undo = added.subtract(diff);
-//        equal(`${undo}`, `${hourBeforeDstStart}`);
+//        expect(`${undo}`).toBe(`${hourBeforeDstStart}`);
 //      });
 
 //      it('Samoa date line change (add): 10:00PM 29 Dec 2011 -> 11:00PM 31 Dec 2011', () => {
@@ -2326,13 +2328,13 @@ describe("Construction and properties", () => {
 //        const dayBeforeSamoaDateLineChangeAbs = timeZone.getInstantFor(new Temporal.PlainDateTime(2011, 12, 29, 22));
 //        const start = dayBeforeSamoaDateLineChangeAbs.toZonedDateTimeISO(timeZone);
 //        const added = start.add({ days: 1, hours: 1 });
-//        equal(added.day, 31);
-//        equal(added.hour, 23);
-//        equal(added.minute, 0);
+//        expect(added.day).toBe(31);
+//        expect(added.hour).toBe(23);
+//        expect(added.minute).toBe(0);
 //        const diff = start.until(added, { largestUnit: 'days' });
-//        equal(`${diff}`, 'P2DT1H');
+//        expect(`${diff}`).toBe('P2DT1H');
 //        const undo = added.subtract(diff);
-//        equal(`${undo}`, `${start}`);
+//        expect(`${undo}`).toBe(`${start}`);
 //      });
 
 //      it('Samoa date line change (subtract): 11:00PM 31 Dec 2011 -> 10:00PM 29 Dec 2011', () => {
@@ -2340,181 +2342,181 @@ describe("Construction and properties", () => {
 //        const dayAfterSamoaDateLineChangeAbs = timeZone.getInstantFor(new Temporal.PlainDateTime(2011, 12, 31, 23));
 //        const start = dayAfterSamoaDateLineChangeAbs.toZonedDateTimeISO(timeZone);
 //        const skipped = start.subtract({ days: 1, hours: 1 });
-//        equal(skipped.day, 31);
-//        equal(skipped.hour, 22);
-//        equal(skipped.minute, 0);
+//        expect(skipped.day).toBe(31);
+//        expect(skipped.hour).toBe(22);
+//        expect(skipped.minute).toBe(0);
 //        const end = start.subtract({ days: 2, hours: 1 });
-//        equal(end.day, 29);
-//        equal(end.hour, 22);
-//        equal(end.minute, 0);
+//        expect(end.day).toBe(29);
+//        expect(end.hour).toBe(22);
+//        expect(end.minute).toBe(0);
 //        const diff = end.since(start, { largestUnit: 'days' });
-//        equal(`${diff}`, '-P2DT1H');
+//        expect(`${diff}`).toBe('-P2DT1H');
 //        const undo = start.add(diff);
-//        equal(`${undo}`, `${end}`);
+//        expect(`${undo}`).toBe(`${end}`);
 //      });
 
 //      it('3:30 day before DST start -> 3:30 day of DST start', () => {
 //        const start = dayBeforeDstStart.add({ hours: 1 }); // 3:30AM
 //        const added = start.add({ days: 1 });
-//        equal(added.day, 8);
-//        equal(added.hour, 3);
-//        equal(added.minute, 30);
+//        expect(added.day).toBe(8);
+//        expect(added.hour).toBe(3);
+//        expect(added.minute).toBe(30);
 //        const diff = start.until(added, { largestUnit: 'days' });
-//        equal(`${diff}`, 'P1D');
+//        expect(`${diff}`).toBe('P1D');
 //        const undo = added.subtract(diff);
-//        equal(`${undo}`, `${start}`);
+//        expect(`${undo}`).toBe(`${start}`);
 //      });
 
 //      it('2:30 day before DST start -> 3:30 day of DST start', () => {
 //        const added = dayBeforeDstStart.add({ days: 1 });
-//        equal(added.day, 8);
-//        equal(added.hour, 3);
-//        equal(added.minute, 30);
+//        expect(added.day).toBe(8);
+//        expect(added.hour).toBe(3);
+//        expect(added.minute).toBe(30);
 //        const diff = dayBeforeDstStart.until(added, { largestUnit: 'days' });
-//        equal(`${diff}`, 'P1D');
+//        expect(`${diff}`).toBe('P1D');
 //        const undo = dayBeforeDstStart.add(diff);
-//        equal(`${undo}`, `${added}`);
+//        expect(`${undo}`).toBe(`${added}`);
 //      });
 
 //      it('1:30 day DST starts -> 4:30 day DST starts', () => {
 //        const start = dayBeforeDstStart.add({ hours: 23 }); // 1:30AM
 //        const added = start.add({ hours: 2 });
-//        equal(added.day, 8);
-//        equal(added.hour, 4);
-//        equal(added.minute, 30);
+//        expect(added.day).toBe(8);
+//        expect(added.hour).toBe(4);
+//        expect(added.minute).toBe(30);
 //        const diff = start.until(added, { largestUnit: 'days' });
-//        equal(`${diff}`, 'PT2H');
+//        expect(`${diff}`).toBe('PT2H');
 //        const undo = added.subtract(diff);
-//        equal(`${undo}`, `${start}`);
+//        expect(`${undo}`).toBe(`${start}`);
 //      });
 
 //      it('2:00 day before DST starts -> 3:00 day DST starts', () => {
 //        const start = hourBeforeDstStart.subtract({ days: 1 }).add({ hours: 1 }); // 2:00AM
 //        const added = start.add({ days: 1 });
-//        equal(added.day, 8);
-//        equal(added.hour, 3);
-//        equal(added.minute, 0);
+//        expect(added.day).toBe(8);
+//        expect(added.hour).toBe(3);
+//        expect(added.minute).toBe(0);
 //        const diff = start.until(added, { largestUnit: 'days' });
-//        equal(`${diff}`, 'P1D');
+//        expect(`${diff}`).toBe('P1D');
 //        const undo = start.add(diff);
-//        equal(`${undo}`, `${added}`);
+//        expect(`${undo}`).toBe(`${added}`);
 //      });
 
 //      it('1:00AM day DST starts -> (add 24 hours) -> 2:00AM day after DST starts', () => {
 //        const start = hourBeforeDstStart; // 1:00AM
 //        const added = start.add({ hours: 24 });
-//        equal(added.day, 9);
-//        equal(added.hour, 2);
-//        equal(added.minute, 0);
+//        expect(added.day).toBe(9);
+//        expect(added.hour).toBe(2);
+//        expect(added.minute).toBe(0);
 //        const diff = start.until(added, { largestUnit: 'days' });
-//        equal(`${diff}`, 'P1DT1H');
+//        expect(`${diff}`).toBe('P1DT1H');
 //        const undo = added.subtract(diff);
-//        equal(`${undo}`, `${start}`);
+//        expect(`${undo}`).toBe(`${start}`);
 //      });
 
 //      it('12:00AM day DST starts -> (add 24 hours) -> 1:00AM day after DST starts', () => {
 //        const start = hourBeforeDstStart.subtract({ hours: 1 }); // 1:00AM
 //        const added = start.add({ hours: 24 });
-//        equal(added.day, 9);
-//        equal(added.hour, 1);
-//        equal(added.minute, 0);
+//        expect(added.day).toBe(9);
+//        expect(added.hour).toBe(1);
+//        expect(added.minute).toBe(0);
 //        const diff = start.until(added, { largestUnit: 'days' });
-//        equal(`${diff}`, 'P1DT1H');
+//        expect(`${diff}`).toBe('P1DT1H');
 //        const undo = added.subtract(diff);
-//        equal(`${undo}`, `${start}`);
+//        expect(`${undo}`).toBe(`${start}`);
 //      });
 
 //      it('Difference can return day length > 24 hours', () => {
 //        const start = ZonedDateTime.from('2020-10-30T01:45-07:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-11-02T01:15-08:00[America/Los_Angeles]');
 //        const diff = start.until(end, { largestUnit: 'days' });
-//        equal(`${diff}`, 'P2DT24H30M');
+//        expect(`${diff}`).toBe('P2DT24H30M');
 //        const undo = start.add(diff);
-//        equal(`${undo}`, `${end}`);
+//        expect(`${undo}`).toBe(`${end}`);
 //      });
 
 //      it('Difference rounding (nearest day) is DST-aware', () => {
 //        const start = ZonedDateTime.from('2020-03-10T02:30-07:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-03-07T14:15-08:00[America/Los_Angeles]');
 //        const diff = start.until(end, { smallestUnit: 'days', roundingMode: 'halfExpand' });
-//        equal(`${diff}`, '-P3D');
+//        expect(`${diff}`).toBe('-P3D');
 //      });
 
 //      it('Difference rounding (ceil day) is DST-aware', () => {
 //        const start = ZonedDateTime.from('2020-03-10T02:30-07:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-03-07T14:15-08:00[America/Los_Angeles]');
 //        const diff = start.until(end, { smallestUnit: 'days', roundingMode: 'ceil' });
-//        equal(`${diff}`, '-P2D');
+//        expect(`${diff}`).toBe('-P2D');
 //      });
 
 //      it('Difference rounding (trunc day) is DST-aware', () => {
 //        const start = ZonedDateTime.from('2020-03-10T02:30-07:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-03-07T14:15-08:00[America/Los_Angeles]');
 //        const diff = start.until(end, { smallestUnit: 'days', roundingMode: 'trunc' });
-//        equal(`${diff}`, '-P2D');
+//        expect(`${diff}`).toBe('-P2D');
 //      });
 
 //      it('Difference rounding (floor day) is DST-aware', () => {
 //        const start = ZonedDateTime.from('2020-03-10T02:30-07:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-03-07T14:15-08:00[America/Los_Angeles]');
 //        const diff = start.until(end, { smallestUnit: 'days', roundingMode: 'floor' });
-//        equal(`${diff}`, '-P3D');
+//        expect(`${diff}`).toBe('-P3D');
 //      });
 
 //      it('Difference rounding (nearest hour) is DST-aware', () => {
 //        const start = ZonedDateTime.from('2020-03-10T02:30-07:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-03-07T14:15-08:00[America/Los_Angeles]');
 //        const diff = start.until(end, { largestUnit: 'days', smallestUnit: 'hours', roundingMode: 'halfExpand' });
-//        equal(`${diff}`, '-P2DT12H');
+//        expect(`${diff}`).toBe('-P2DT12H');
 //      });
 
 //      it('Difference rounding (ceil hour) is DST-aware', () => {
 //        const start = ZonedDateTime.from('2020-03-10T02:30-07:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-03-07T14:15-08:00[America/Los_Angeles]');
 //        const diff = start.until(end, { largestUnit: 'days', smallestUnit: 'hours', roundingMode: 'ceil' });
-//        equal(`${diff}`, '-P2DT12H');
+//        expect(`${diff}`).toBe('-P2DT12H');
 //      });
 
 //      it('Difference rounding (trunc hour) is DST-aware', () => {
 //        const start = ZonedDateTime.from('2020-03-10T02:30-07:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-03-07T14:15-08:00[America/Los_Angeles]');
 //        const diff = start.until(end, { largestUnit: 'days', smallestUnit: 'hours', roundingMode: 'trunc' });
-//        equal(`${diff}`, '-P2DT12H');
+//        expect(`${diff}`).toBe('-P2DT12H');
 //      });
 
 //      it('Difference rounding (floor hour) is DST-aware', () => {
 //        const start = ZonedDateTime.from('2020-03-10T02:30-07:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-03-07T14:15-08:00[America/Los_Angeles]');
 //        const diff = start.until(end, { largestUnit: 'days', smallestUnit: 'hours', roundingMode: 'floor' });
-//        equal(`${diff}`, '-P2DT13H');
+//        expect(`${diff}`).toBe('-P2DT13H');
 //      });
 
 //      it('Difference when date portion ends inside a DST-skipped period', () => {
 //        const start = ZonedDateTime.from('2020-03-07T02:30-08:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-03-08T03:15-07:00[America/Los_Angeles]');
 //        const diff = start.until(end, { largestUnit: 'days' });
-//        equal(`${diff}`, 'PT23H45M');
+//        expect(`${diff}`).toBe('PT23H45M');
 //      });
 
 //      it("Difference when date portion ends inside day skipped by Samoa's 24hr 2011 transition", () => {
 //        const end = ZonedDateTime.from('2011-12-31T05:00+14:00[Pacific/Apia]');
 //        const start = ZonedDateTime.from('2011-12-28T10:00-10:00[Pacific/Apia]');
 //        const diff = start.until(end, { largestUnit: 'days' });
-//        equal(`${diff}`, 'P1DT19H');
+//        expect(`${diff}`).toBe('P1DT19H');
 //      });
 
 //      it('Rounding up to hours causes one more day of overflow (positive)', () => {
 //        const start = ZonedDateTime.from('2020-01-01T00:00-08:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-01-03T23:59-08:00[America/Los_Angeles]');
 //        const diff = start.until(end, { largestUnit: 'days', smallestUnit: 'hours', roundingMode: 'halfExpand' });
-//        equal(`${diff}`, 'P3D');
+//        expect(`${diff}`).toBe('P3D');
 //      });
 
 //      it('Rounding up to hours causes one more day of overflow (negative)', () => {
 //        const start = ZonedDateTime.from('2020-01-01T00:00-08:00[America/Los_Angeles]');
 //        const end = ZonedDateTime.from('2020-01-03T23:59-08:00[America/Los_Angeles]');
 //        const diff = end.until(start, { largestUnit: 'days', smallestUnit: 'hours', roundingMode: 'halfExpand' });
-//        equal(`${diff}`, '-P3D');
+//        expect(`${diff}`).toBe('-P3D');
 //      });
 
 //      it('addition and difference work near DST start', () => {
@@ -2529,20 +2531,20 @@ describe("Construction and properties", () => {
 //            const end = start.add({ minutes: j * minutesPerStep });
 //            const diff = start.until(end, { largestUnit: 'days' });
 //            const expectedMinutes = minutesPerStep * (j % stepsPerHour);
-//            equal(diff.minutes, expectedMinutes);
+//            expect(diff.minutes).toBe(expectedMinutes);
 //            const diff60 = Math.floor(j / stepsPerHour);
 //            if (i >= stepsPerHour) {
 //              // DST transition already happened
 //              const expectedDays = diff60 < 24 ? 0 : diff60 < 48 ? 1 : 2;
 //              const expectedHours = diff60 < 24 ? diff60 : diff60 < 48 ? diff60 - 24 : diff60 - 48;
-//              equal(diff.hours, expectedHours);
-//              equal(diff.days, expectedDays);
+//              expect(diff.hours).toBe(expectedHours);
+//              expect(diff.days).toBe(expectedDays);
 //            } else {
 //              // DST transition hasn't happened yet
 //              const expectedDays = diff60 < 23 ? 0 : diff60 < 47 ? 1 : 2;
 //              const expectedHours = diff60 < 23 ? diff60 : diff60 < 47 ? diff60 - 23 : diff60 - 47;
-//              equal(diff.hours, expectedHours);
-//              equal(diff.days, expectedDays);
+//              expect(diff.hours).toBe(expectedHours);
+//              expect(diff.days).toBe(expectedDays);
 //            }
 //          }
 //        }
@@ -2573,16 +2575,16 @@ describe("Construction and properties", () => {
 //        const d = Temporal.Duration.from({ months: 1, days: 1 });
 //        const options = undefined;
 //        const result = zdt.add(d, options);
-//        equal(result.toString(), '2020-03-01T00:00:00-08:00[America/Los_Angeles]');
-//        equal(breakoutUnits('add', zdt, d, options).toString(), result.toString());
+//        expect(result.toString()).toBe('2020-03-01T00:00:00-08:00[America/Los_Angeles]');
+//        expect(breakoutUnits('add', zdt, d, options).toString()).toBe(result.toString());
 //      });
 //      it('order of operations: add / constrain', () => {
 //        const zdt = ZonedDateTime.from('2020-01-31T00:00-08:00[America/Los_Angeles]');
 //        const d = Temporal.Duration.from({ months: 1, days: 1 });
 //        const options = { overflow: 'constrain' };
 //        const result = zdt.add(d, options);
-//        equal(result.toString(), '2020-03-01T00:00:00-08:00[America/Los_Angeles]');
-//        equal(breakoutUnits('add', zdt, d, options).toString(), result.toString());
+//        expect(result.toString()).toBe('2020-03-01T00:00:00-08:00[America/Los_Angeles]');
+//        expect(breakoutUnits('add', zdt, d, options).toString()).toBe(result.toString());
 //      });
 //      it('order of operations: add / reject', () => {
 //        const zdt = ZonedDateTime.from('2020-01-31T00:00-08:00[America/Los_Angeles]');
@@ -2595,16 +2597,16 @@ describe("Construction and properties", () => {
 //        const d = Temporal.Duration.from({ months: 1, days: 1 });
 //        const options = undefined;
 //        const result = zdt.subtract(d, options);
-//        equal(result.toString(), '2020-02-28T00:00:00-08:00[America/Los_Angeles]');
-//        equal(breakoutUnits('subtract', zdt, d, options).toString(), result.toString());
+//        expect(result.toString()).toBe('2020-02-28T00:00:00-08:00[America/Los_Angeles]');
+//        expect(breakoutUnits('subtract', zdt, d, options).toString()).toBe(result.toString());
 //      });
 //      it('order of operations: subtract / constrain', () => {
 //        const zdt = ZonedDateTime.from('2020-03-31T00:00-07:00[America/Los_Angeles]');
 //        const d = Temporal.Duration.from({ months: 1, days: 1 });
 //        const options = { overflow: 'constrain' };
 //        const result = zdt.subtract(d, options);
-//        equal(result.toString(), '2020-02-28T00:00:00-08:00[America/Los_Angeles]');
-//        equal(breakoutUnits('subtract', zdt, d, options).toString(), result.toString());
+//        expect(result.toString()).toBe('2020-02-28T00:00:00-08:00[America/Los_Angeles]');
+//        expect(breakoutUnits('subtract', zdt, d, options).toString()).toBe(result.toString());
 //      });
 //      it('order of operations: subtract / reject', () => {
 //        const zdt = ZonedDateTime.from('2020-03-31T00:00-07:00[America/Los_Angeles]');
@@ -2617,19 +2619,19 @@ describe("Construction and properties", () => {
 //    describe('ZonedDateTime.compare()', () => {
 //      const zdt1 = ZonedDateTime.from('1976-11-18T15:23:30.123456789+01:00[Europe/Vienna]');
 //      const zdt2 = ZonedDateTime.from('2019-10-29T10:46:38.271986102+01:00[Europe/Vienna]');
-//      it('equal', () => equal(ZonedDateTime.compare(zdt1, zdt1), 0));
-//      it('smaller/larger', () => equal(ZonedDateTime.compare(zdt1, zdt2), -1));
-//      it('larger/smaller', () => equal(ZonedDateTime.compare(zdt2, zdt1), 1));
+//      it('equal', () => expect(ZonedDateTime.compare(zdt1, zdt1)).toBe(0));
+//      it('smaller/larger', () => expect(ZonedDateTime.compare(zdt1, zdt2)).toBe(-1));
+//      it('larger/smaller', () => expect(ZonedDateTime.compare(zdt2, zdt1)).toBe(1));
 //      it('casts first argument', () => {
-//        equal(ZonedDateTime.compare({ year: 1976, month: 11, day: 18, hour: 15, timeZone: 'Europe/Vienna' }, zdt2), -1);
-//        equal(ZonedDateTime.compare('1976-11-18T15:23:30.123456789+01:00[Europe/Vienna]', zdt2), -1);
+//        expect(ZonedDateTime.compare({ year: 1976, month: 11, day: 18, hour: 15, timeZone: 'Europe/Vienna' }, zdt2)).toBe(-1);
+//        expect(ZonedDateTime.compare('1976-11-18T15:23:30.123456789+01:00[Europe/Vienna]', zdt2)).toBe(-1);
 //      });
 //      it('casts second argument', () => {
-//        equal(ZonedDateTime.compare(zdt1, { year: 2019, month: 10, day: 29, hour: 10, timeZone: 'Europe/Vienna' }), -1);
-//        equal(ZonedDateTime.compare(zdt1, '2019-10-29T10:46:38.271986102+01:00[Europe/Vienna]'), -1);
+//        expect(ZonedDateTime.compare(zdt1, { year: 2019, month: 10, day: 29, hour: 10, timeZone: 'Europe/Vienna' })).toBe(-1);
+//        expect(ZonedDateTime.compare(zdt1, '2019-10-29T10:46:38.271986102+01:00[Europe/Vienna]')).toBe(-1);
 //      });
 //      it('object must contain at least the required properties', () => {
-//        equal(ZonedDateTime.compare({ year: 1976, month: 11, day: 18, timeZone: 'Europe/Vienna' }, zdt2), -1);
+//        expect(ZonedDateTime.compare({ year: 1976, month: 11, day: 18, timeZone: 'Europe/Vienna' }, zdt2)).toBe(-1);
 //        throws(() => ZonedDateTime.compare({ month: 11, day: 18, timeZone: 'Europe/Vienna' }, zdt2), TypeError);
 //        throws(() => ZonedDateTime.compare({ year: 1976, day: 18, timeZone: 'Europe/Vienna' }, zdt2), TypeError);
 //        throws(() => ZonedDateTime.compare({ year: 1976, month: 11, timeZone: 'Europe/Vienna' }, zdt2), TypeError);
@@ -2638,7 +2640,7 @@ describe("Construction and properties", () => {
 //          () => ZonedDateTime.compare({ years: 1976, months: 11, days: 19, hours: 15, timeZone: 'Europe/Vienna' }, zdt2),
 //          TypeError
 //        );
-//        equal(ZonedDateTime.compare(zdt1, { year: 2019, month: 10, day: 29, timeZone: 'Europe/Vienna' }), -1);
+//        expect(ZonedDateTime.compare(zdt1, { year: 2019, month: 10, day: 29, timeZone: 'Europe/Vienna' })).toBe(-1);
 //        throws(() => ZonedDateTime.compare(zdt1, { month: 10, day: 29, timeZone: 'Europe/Vienna' }), TypeError);
 //        throws(() => ZonedDateTime.compare(zdt1, { year: 2019, day: 29, timeZone: 'Europe/Vienna' }), TypeError);
 //        throws(() => ZonedDateTime.compare(zdt1, { year: 2019, month: 10, timeZone: 'Europe/Vienna' }), TypeError);
@@ -2649,15 +2651,15 @@ describe("Construction and properties", () => {
 //        );
 //      });
 //      it('disregards time zone IDs if exact times are equal', () => {
-//        equal(ZonedDateTime.compare(zdt1, zdt1.withTimeZone('Asia/Kolkata')), 0);
+//        expect(ZonedDateTime.compare(zdt1, zdt1.withTimeZone('Asia/Kolkata'))).toBe(0);
 //      });
 //      it('disregards calendar IDs if exact times and time zones are equal', () => {
-//        equal(ZonedDateTime.compare(zdt1, zdt1.withCalendar('japanese')), 0);
+//        expect(ZonedDateTime.compare(zdt1, zdt1.withCalendar('japanese'))).toBe(0);
 //      });
 //      it('compares exact time, not clock time', () => {
 //        const clockBefore = ZonedDateTime.from('1999-12-31T23:30-08:00[America/Vancouver]');
 //        const clockAfter = ZonedDateTime.from('2000-01-01T01:30-04:00[America/Halifax]');
-//        equal(ZonedDateTime.compare(clockBefore, clockAfter), 1);
-//        equal(Temporal.PlainDateTime.compare(clockBefore.toPlainDateTime(), clockAfter.toPlainDateTime()), -1);
+//        expect(ZonedDateTime.compare(clockBefore, clockAfter)).toBe(1);
+//        expect(Temporal.PlainDateTime.compare(clockBefore.toPlainDateTime(), clockAfter.toPlainDateTime())).toBe(-1);
 //      });
 //    });
